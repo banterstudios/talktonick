@@ -5,9 +5,9 @@ import {
   Switch
 } from 'react-router-dom'
 
-import Home from '../../views/Home'
+import Home from 'client/views/Home'
 
-import PageNotFound from '../../views/PageNotFound'
+import PageNotFound from 'client/views/PageNotFound'
 
 const App = (props) => {
   return (

@@ -1,20 +1,20 @@
 'use strict'
 
+import express from 'express'
+
+import bodyParser from 'body-parser'
+
+import path from 'path'
+
+import morgan from 'morgan'
+
+import exphbs from 'express-handlebars'
+
+import staticRoutes from 'server/routes'
+
 const port = process.env.PORT || 3000
 
 const isDev = process.env.NODE_ENV === 'development'
-
-const express = require('express')
-
-const bodyParser = require('body-parser')
-
-const path = require('path')
-
-const morgan = require('morgan')
-
-const exphbs = require('express-handlebars')
-
-const staticRoutes = require('./routes')
 
 const app = express()
 

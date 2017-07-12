@@ -1,7 +1,7 @@
 /**
  * @module styles
  */
-import 'styles/index.scss'
+import 'client/styles/index.scss'
 
 /**
  * @module react
@@ -21,7 +21,7 @@ import { render } from 'react-dom'
 /**
  * @module router
  */
-import router from 'config/router'
+import router from 'client/config/router'
 
 /**
  * @module store
@@ -31,7 +31,7 @@ import router from 'config/router'
 /**
  *  queryById
  */
-import { queryById } from 'utils/DomUtils'
+import { queryById } from 'client/utils/DomUtils'
 
 /**
  * @module injectTapEventPlugin

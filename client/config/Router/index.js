@@ -7,7 +7,7 @@ import {
 /**
  *  @module App
  */
-import App from 'components/App'
+import App from 'client/components/App'
 
 const router = (
   <Routes>

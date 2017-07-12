@@ -1,24 +1,7 @@
 const webpack = require('webpack')
-const fs = require('fs')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-
-const getDirectories = srcPath => {
-  return fs.readdirSync(srcPath)
-    .filter(file => fs.statSync(path.join(srcPath, file)).isDirectory())
-}
-
-const generateAliases = basePath => {
-  const aliases = {}
-  const dirNames = getDirectories(basePath)
-
-  dirNames.forEach(dirName => {
-    aliases[dirName] = path.resolve(__dirname, basePath + '/' + dirName)
-  })
-
-  return aliases
-}
 
 const cleanWebpackBuild = new CleanWebpackPlugin(['build'], {
   root: __dirname,
@@ -37,7 +20,9 @@ module.exports = {
     publicPath: '/static'
   },
   resolve: {
-    alias: generateAliases('client')
+    alias: {
+      client: path.join(__dirname, '/client')
+    }
   },
   resolveLoader: {
     moduleExtensions: ['-loader']

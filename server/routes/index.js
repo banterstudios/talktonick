@@ -4,9 +4,9 @@ import ReactDOMServer from 'react-dom/server'
 
 import { StaticRouter } from 'react-router'
 
-import App from '../../client/components/App'
+import App from 'client/components/App'
 
-const express = require('express')
+import express from 'express'
 
 const router = express.Router()
 

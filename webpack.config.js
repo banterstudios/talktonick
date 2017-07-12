@@ -1,22 +1,5 @@
 const webpack = require('webpack')
-const fs = require('fs')
 const path = require('path')
-
-const getDirectories = srcPath => {
-  return fs.readdirSync(srcPath)
-    .filter(file => fs.statSync(path.join(srcPath, file)).isDirectory())
-}
-
-const generateAliases = basePath => {
-  const aliases = {}
-  const dirNames = getDirectories(basePath)
-
-  dirNames.forEach(dirName => {
-    aliases[dirName] = path.resolve(__dirname, basePath + '/' + dirName)
-  })
-
-  return aliases
-}
 
 module.exports = {
   entry: [
@@ -29,7 +12,11 @@ module.exports = {
     publicPath: '/static'
   },
   resolve: {
-    alias: generateAliases('client')
+    alias: {
+      client: path.join(__dirname, '/client'),
+      server: path.join(__dirname, '/server')
+      // generateAliases('client')
+    }
   },
   resolveLoader: {
     moduleExtensions: ['-loader']
