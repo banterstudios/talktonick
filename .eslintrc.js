@@ -7,13 +7,13 @@ module.exports = {
   "plugins": [
     "standard",
     "promise",
-    "react",
-    "chai-friendly"
+    "react"
   ],
   "env": {
     "es6": true,
     "browser": true,
-    "commonjs": true
+    "commonjs": true,
+    jest: true
   },
   "parserOptions": {
     "ecmaFeatures": {
@@ -29,7 +29,7 @@ module.exports = {
     "no-trailing-spaces": WARN,
     "indent": WARN,
     "semi": WARN,
-    "eol-last": OFF,
+    "eol-last": ERROR,
     "padded-blocks": WARN,
     "spaced-comment": WARN,
     "no-multiple-empty-lines": WARN,
@@ -38,12 +38,9 @@ module.exports = {
     "one-var": WARN,
     "no-constant-condition": WARN,
     "no-unused-expressions": OFF,
-    "comma-dangle": OFF
+    "comma-dangle": WARN
   },
   "globals": {
-    "require": true,
-    "it": true,
-    "describe": true,
-    "beforeEach": true
+    "require": true
   }
 }
