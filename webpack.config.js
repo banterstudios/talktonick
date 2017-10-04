@@ -15,7 +15,6 @@ module.exports = {
     alias: {
       client: path.join(__dirname, '/client'),
       server: path.join(__dirname, '/server')
-      // generateAliases('client')
     }
   },
   resolveLoader: {

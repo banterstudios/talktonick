@@ -81,5 +81,11 @@
     "reselect": "^3.0.1",
     "webpack-hot-middleware": "^2.18.2",
     "whatwg-fetch": "^2.0.3"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^client[/](.+)": "<rootDir>/client/$1",
+      "^server[/](.+)": "<rootDir>/server/$1"
+    }
   }
 }
