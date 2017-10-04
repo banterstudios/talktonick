@@ -9,7 +9,9 @@ class Login extends Component {
 
   render () {
     return (
-      <section>Hello login!</section>
+      <section className='login'>
+        Hello login!
+      </section>
     )
   }
 }
