@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 
-// Root reducer - Combines all reducers passed in ready for a redux store
+import { reducer as formReducer } from 'redux-form'
+
 const rootReducer = combineReducers({
-  test: (state = {}) => state
+  test: (state = {}) => state,
+  form: formReducer
 })
 
 export default rootReducer
