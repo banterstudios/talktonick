@@ -7,8 +7,8 @@
     "start": "cross-env PORT=8080 node ./server",
     "start-dev": "cross-env NODE_ENV=development PORT=8080 node ./server",
     "production": "cross-env NODE_ENV=production webpack --progress --color --config webpack.prod.config.js",
-    "test": "jest --watch",
-    "test-once": "jest"
+    "test:jest:watch": "jest --watch",
+    "test:jest": "jest"
   },
   "author": "Nick de Rozarieux",
   "license": "ISC",
@@ -26,6 +26,8 @@
     "clean-webpack-plugin": "^0.1.15",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.0",
+    "enzyme": "^3.1.0",
+    "enzyme-to-json": "^3.1.4",
     "eslint": "^3.16.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.6.3",

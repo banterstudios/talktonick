@@ -1,62 +1,62 @@
 /**
  *  @name classNames
  */
-import classNames from 'utils/classNames'
+import classNames from './classNames'
 
-describe('ClassNames', () => {
+describe('utils/ClassNames', () => {
   it('should return an empty string', () => {
-    expect(classNames()).to.equal('')
+    expect(classNames()).toEqual('')
   })
 
   it('should return a string equal to "baseclass"', () => {
-    expect(classNames('baseclass')).to.equal('baseclass')
+    expect(classNames('baseclass')).toEqual('baseclass')
   })
 
   it('should return a string equal to "baseclass extraclassname"', () => {
-    expect(classNames('baseclass', 'extraclassname')).to.equal('baseclass extraclassname')
+    expect(classNames('baseclass', 'extraclassname')).toEqual('baseclass extraclassname')
   })
 
   it('should return a string equal to "baseclass extraclassname extraextraclassname"', () => {
-    expect(classNames('baseclass', ['extraclassname', 'extraextraclassname'])).to.equal('baseclass extraclassname extraextraclassname')
+    expect(classNames('baseclass', ['extraclassname', 'extraextraclassname'])).toEqual('baseclass extraclassname extraextraclassname')
   })
 
   it('should return a string equal to "baseclass extraclassname"', () => {
-    expect(classNames('baseclass', {extraclassname: true, extraextraclassname: false})).to.equal('baseclass extraclassname')
+    expect(classNames('baseclass', {extraclassname: true, extraextraclassname: false})).toEqual('baseclass extraclassname')
   })
 
   it('should return a string equal to "baseclass extraclassname baseclass--green"', () => {
-    expect(classNames('baseclass', 'extraclassname', 'green')).to.equal('baseclass extraclassname baseclass--green')
+    expect(classNames('baseclass', 'extraclassname', 'green')).toEqual('baseclass extraclassname baseclass--green')
   })
 
   it('should return a string equal to "baseclass baseclass--green"', () => {
-    expect(classNames('baseclass', '', 'green')).to.equal('baseclass baseclass--green')
+    expect(classNames('baseclass', '', 'green')).toEqual('baseclass baseclass--green')
   })
 
   it('should return a string equal to "baseclass"', () => {
-    expect(classNames('baseclass', ['green', 'yellow'])).to.equal('baseclass green yellow')
+    expect(classNames('baseclass', ['green', 'yellow'])).toEqual('baseclass green yellow')
   })
 
   it('should return a string equal to "baseclass baseclass--green baseclass--yellow"', () => {
-    expect(classNames('baseclass', '', ['green', 'yellow'])).to.equal('baseclass baseclass--green baseclass--yellow')
+    expect(classNames('baseclass', '', ['green', 'yellow'])).toEqual('baseclass baseclass--green baseclass--yellow')
   })
 
   it('should return a string equal to "baseclass extraclassname baseclass--green baseclass--yellow"', () => {
-    expect(classNames('baseclass', 'extraclassname', ['green', 'yellow'])).to.equal('baseclass extraclassname baseclass--green baseclass--yellow')
+    expect(classNames('baseclass', 'extraclassname', ['green', 'yellow'])).toEqual('baseclass extraclassname baseclass--green baseclass--yellow')
   })
 
   it('should return a string equal to "baseclass baseclass--green baseclass--yellow baseclass--extrayellow"', () => {
-    expect(classNames('baseclass', '', ['green', 'yellow'], ['extrayellow'])).to.equal('baseclass baseclass--green baseclass--yellow baseclass--extrayellow')
+    expect(classNames('baseclass', '', ['green', 'yellow'], ['extrayellow'])).toEqual('baseclass baseclass--green baseclass--yellow baseclass--extrayellow')
   })
 
   it('should return a string equal to "baseclass baseclass--green baseclass--yellow baseclass--extrayellow baseclass--extraextrayellow"', () => {
-    expect(classNames('baseclass', '', ['green', 'yellow'], ['extrayellow'], ['extraextrayellow'])).to.equal('baseclass baseclass--green baseclass--yellow baseclass--extrayellow baseclass--extraextrayellow')
+    expect(classNames('baseclass', '', ['green', 'yellow'], ['extrayellow'], ['extraextrayellow'])).toEqual('baseclass baseclass--green baseclass--yellow baseclass--extrayellow baseclass--extraextrayellow')
   })
 
   it('should return a string equal to "baseclass extraclassname baseclass--green"', () => {
     expect(classNames('baseclass', 'extraclassname', {
       'green': true,
       'yellow': false
-    })).to.equal('baseclass extraclassname baseclass--green')
+    })).toEqual('baseclass extraclassname baseclass--green')
   })
 
   it('should return a string equal to "baseclass extraclassname baseclass--green baseclass--yellow"', () => {
@@ -65,6 +65,6 @@ describe('ClassNames', () => {
       'yellow': false
     }, [
       'yellow'
-    ])).to.equal('baseclass extraclassname baseclass--green baseclass--yellow')
+    ])).toEqual('baseclass extraclassname baseclass--green baseclass--yellow')
   })
 })
