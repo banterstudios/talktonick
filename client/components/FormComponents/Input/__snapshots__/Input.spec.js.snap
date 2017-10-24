@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/FormComponents/Input renders in default state 1`] = `
+<Input>
+  <div
+    className="input"
+  >
+    <input
+      className="input__elem"
+      disabled={undefined}
+      name={undefined}
+      onBlur={undefined}
+      onChange={undefined}
+      onFocus={undefined}
+      onInput={undefined}
+      type={undefined}
+      value={undefined}
+    />
+  </div>
+</Input>
+`;
