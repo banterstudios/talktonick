@@ -23,8 +23,6 @@ const appendBaseName = (baseName, mod) => `${baseName}--${mod}`
  *  @return {Array}
  */
 const modifiersToClasses = (baseName, modifiers) => {
-  log('TODO: FIX CLASSNAMES!')
-
   if (!baseName) {
     return ''
   }
