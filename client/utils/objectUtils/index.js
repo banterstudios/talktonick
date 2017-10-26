@@ -1,9 +1,13 @@
 import {
   isArray,
-  isObject
+  isObject,
+  isTruthy,
+  isString
 } from './objectUtils'
 
 export {
   isArray,
-  isObject
+  isObject,
+  isTruthy,
+  isString
 }

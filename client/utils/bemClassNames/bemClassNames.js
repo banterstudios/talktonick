@@ -77,7 +77,6 @@ const bemClassNames = (baseClass = '') => (customClasses, ...modifiers) => {
     ...createClasses('', [customClasses], constructCustomClass),
     ...createClasses(baseClass, modifiers, constructModifierClass)
   ])
-
 }
 
 export default bemClassNames
