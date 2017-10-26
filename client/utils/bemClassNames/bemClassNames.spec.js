@@ -1,10 +1,17 @@
 /**
- *  @name classNames
+ *  @name bemClassNames
  */
-import classNames from './classNames'
+import bemClassNames from './bemClassNames'
 
 describe('utils/ClassNames', () => {
+  let classNames
+
+  beforeEach(() => {
+    classNames = bemClassNames('baseclass')
+  })
+
   it('should return an empty string', () => {
+    classNames = bemClassNames('')
     expect(classNames()).toEqual('')
   })
 
