@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
+/* eslint-enable no-unused-vars */
 
 import PropTypes from 'prop-types'
 
@@ -15,35 +17,7 @@ const Input = glamorous.input({
   }
 })
 
-const InputWrapper = (props) => {
-  const {
-    type,
-    name,
-    value,
-    onBlur,
-    onFocus,
-    onInput,
-    onChange,
-    disabled
-  } = props
-
-  return (
-    <div className='input'>
-      <Input
-        type={type}
-        name={name}
-        value={value}
-        onBlur={onBlur}
-        onFocus={onFocus}
-        onInput={onInput}
-        onChange={onChange}
-        disabled={disabled}
-      />
-    </div>
-  )
-}
-
-InputWrapper.propTypes = {
+Input.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.any,
@@ -58,4 +32,4 @@ InputWrapper.propTypes = {
   ])
 }
 
-export default InputWrapper
+export default Input

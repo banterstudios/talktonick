@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import Input from 'client/components/FormComponents/Input'
+import TextInput from 'client/components/FormComponents/TextInput'
 
 class Login extends Component {
   constructor (props) {
@@ -13,7 +13,7 @@ class Login extends Component {
     return (
       <section className='login'>
         Hello login!
-        <Input />
+        <TextInput />
       </section>
     )
   }
