@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Wrapper from 'client/components/Gui/Wrapper'
+
 class PageNotFound extends Component {
   constructor (props) {
     super(props)
@@ -7,7 +9,9 @@ class PageNotFound extends Component {
 
   render () {
     return (
-      <div>PageNotFound</div>
+      <Wrapper className='page-not-found'>
+        PageNotFound
+      </Wrapper>
     )
   }
 }

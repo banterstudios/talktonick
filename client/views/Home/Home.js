@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
+import Wrapper from 'client/components/Gui/Wrapper'
+
 class Home extends Component {
   constructor (props) {
     super(props)
@@ -9,7 +11,9 @@ class Home extends Component {
 
   render () {
     return (
-      <section>Homepage</section>
+      <Wrapper className='home'>
+          HomePage
+      </Wrapper>
     )
   }
 }

@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import TextInput from 'client/components/FormComponents/TextInput'
 
+import Wrapper from 'client/components/Gui/Wrapper'
+
 class Login extends Component {
   constructor (props) {
     super(props)
@@ -11,10 +13,10 @@ class Login extends Component {
 
   render () {
     return (
-      <section className='login'>
+      <Wrapper className='login'>
         Hello login!
         <TextInput />
-      </section>
+      </Wrapper>
     )
   }
 }
