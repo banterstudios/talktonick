@@ -1,7 +1,5 @@
 import React from 'react'
 
-import bemClassNames from 'client/utils/bemClassNames'
-
 import PropTypes from 'prop-types'
 
 const Input = (props) => {
@@ -13,14 +11,11 @@ const Input = (props) => {
     onFocus,
     onInput,
     onChange,
-    disabled,
-    className
+    disabled
   } = props
 
-  const bemClassName = bemClassNames('input')
-
   return (
-    <div className={bemClassName(className)}>
+    <div className='input'>
       <input
         className='input__elem'
         type={type}
