@@ -19,7 +19,7 @@ const TextInput = (props) => {
   } = props
 
   return (
-    <Div position='relative' width={'100%'} >
+    <Div position='relative' width='100%' >
       <Input
         type={type}
         name={name}
