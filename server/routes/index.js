@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Provider } from 'react-redux'
 
+import { renderStatic } from 'glamor/server'
+
 import ReactDOMServer from 'react-dom/server'
 
 import { StaticRouter } from 'react-router'
@@ -21,16 +23,18 @@ const controller = (req, res) => {
 
   const store = configureStore(initialState)
 
-  const html = ReactDOMServer.renderToString(
+  const { html, css, ids = [] } = renderStatic(() => ReactDOMServer.renderToString(
     <Provider store={store}>
       <StaticRouter location={req.url} context={context}>
         <App />
       </StaticRouter>
     </Provider>
-  )
+  ))
 
   const templateData = {
     initialHtml: html,
+    initialCSS: css,
+    initialIds: JSON.stringify(ids),
     initialJSONState: JSON.stringify(store.getState())
   }
 

@@ -85,6 +85,7 @@
     "redux-form": "^7.0.4",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
+    "serialize-javascript": "^1.4.0",
     "webpack-hot-middleware": "^2.18.2",
     "whatwg-fetch": "^2.0.3"
   },

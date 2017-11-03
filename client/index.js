@@ -8,6 +8,12 @@ import { queryById } from 'client/utils/domUtils'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
+import configureStyles from 'client/config/configureStyles'
+
+// rehydrate glamor ids
+configureStyles()
+
+// Allow for tap events
 injectTapEventPlugin()
 
 render(
