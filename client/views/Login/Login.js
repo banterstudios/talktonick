@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
+import Input from 'client/components/FormComponents/Input'
+
 class Login extends Component {
   constructor (props) {
     super(props)
@@ -11,6 +13,7 @@ class Login extends Component {
     return (
       <section className='login'>
         Hello login!
+        <Input />
       </section>
     )
   }

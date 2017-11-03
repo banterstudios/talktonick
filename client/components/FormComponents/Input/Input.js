@@ -1,6 +1,6 @@
 import React from 'react'
 
-import classNames from 'client/utils/classNames'
+import bemClassNames from 'client/utils/bemClassNames'
 
 import PropTypes from 'prop-types'
 
@@ -17,10 +17,10 @@ const Input = (props) => {
     className
   } = props
 
-  const modClassNames = classNames('input', className)
+  const bemClassName = bemClassNames('input')
 
   return (
-    <div className={modClassNames}>
+    <div className={bemClassName(className)}>
       <input
         className='input__elem'
         type={type}
