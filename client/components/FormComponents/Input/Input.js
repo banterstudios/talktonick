@@ -2,7 +2,20 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 
-const Input = (props) => {
+import glamorous from 'glamorous'
+
+const Input = glamorous.input({
+  border: 0,
+  borderRadius: 0,
+  padding: 0,
+  appearance: 'none',
+  backgroundColor: 'transparent',
+  '&:focus, &:active': {
+    outline: 'none'
+  }
+})
+
+const InputWrapper = (props) => {
   const {
     type,
     name,
@@ -16,8 +29,7 @@ const Input = (props) => {
 
   return (
     <div className='input'>
-      <input
-        className='input__elem'
+      <Input
         type={type}
         name={name}
         value={value}
@@ -26,12 +38,12 @@ const Input = (props) => {
         onInput={onInput}
         onChange={onChange}
         disabled={disabled}
-        />
+      />
     </div>
   )
 }
 
-Input.propTypes = {
+InputWrapper.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.any,
@@ -46,4 +58,4 @@ Input.propTypes = {
   ])
 }
 
-export default Input
+export default InputWrapper
