@@ -4,7 +4,8 @@ import {
   addClass,
   toggleClass,
   removeClass,
-  isElemInView
+  isElemInView,
+  testForPassiveScroll
 } from './domUtils'
 
 export {
@@ -13,5 +14,6 @@ export {
   addClass,
   toggleClass,
   removeClass,
-  isElemInView
+  isElemInView,
+  testForPassiveScroll
 }

@@ -63,6 +63,11 @@ export const removeClass = (element, className = '') => {
   }
 }
 
+/**
+ * @name isElemInView
+ * @param {*} node
+ * @param {Number} offset
+ */
 export const isElemInView = (node, offset = 0) => {
   // get element position in viewport
   const rect = node.getBoundingClientRect()
@@ -79,4 +84,23 @@ export const isElemInView = (node, offset = 0) => {
     rect.top < (viewportHeight + offset) &&
     rect.left < (viewportWidth + offset)
   )
+}
+
+/**
+ *  @name testForPassiveScroll
+ *  @description Will check to see if passive options is available with dom events
+ *  @return {Boolean}
+ */
+export const testForPassiveScroll = () => {
+  let supportsPassiveOption = false
+  try {
+    const opts = Object.defineProperty({}, 'passive', {
+      get: function () {
+        supportsPassiveOption = true
+      }
+    })
+    window.addEventListener('test', null, opts)
+    window.removeEventListener('test', null, opts)
+  } catch (e) {}
+  return supportsPassiveOption
 }
