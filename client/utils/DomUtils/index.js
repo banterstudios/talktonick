@@ -3,7 +3,8 @@ import {
   queryBySelector,
   addClass,
   toggleClass,
-  removeClass
+  removeClass,
+  isElemInView
 } from './domUtils'
 
 export {
@@ -11,5 +12,6 @@ export {
   queryBySelector,
   addClass,
   toggleClass,
-  removeClass
+  removeClass,
+  isElemInView
 }
