@@ -6,6 +6,15 @@ import TextInput from 'client/components/FormComponents/TextInput'
 
 import Wrapper from 'client/components/Gui/Wrapper'
 
+const mapStateToProps = (state, props) => {
+  return {}
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {}
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class Login extends Component {
   constructor (props) {
     super(props)
@@ -21,15 +30,4 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  return {}
-}
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {}
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login)
+export default Login

@@ -5,7 +5,9 @@
   ],
     "plugins": [
     "transform-es2015-destructuring",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "transform-decorators-legacy",
+    "transform-class-properties"
   ],
   "env": {
     "development": {

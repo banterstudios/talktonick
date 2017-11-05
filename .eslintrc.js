@@ -15,6 +15,7 @@ module.exports = {
     "commonjs": true,
     jest: true
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,
