@@ -17,7 +17,7 @@ describe('components/FormComponents/TextInput', () => {
     disabled: false
   }
 
-  describe('renders', () => {
+  describe('@renders', () => {
     it('in default state', () => {
       const component = mount(<TextInput { ...initialProps } />)
 

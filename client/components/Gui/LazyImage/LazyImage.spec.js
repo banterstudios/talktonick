@@ -11,9 +11,9 @@ describe('components/Gui/LazyImage', () => {
     }
   })
 
-  describe('renders', () => {
+  describe('@renders', () => {
     it('in default state', () => {
-      const component = mount(<LazyImage { ...initialProps} />)
+      const component = mount(<LazyImage { ...initialProps } />)
 
       expect(toJson(component)).toMatchSnapshot()
       component.unmount()

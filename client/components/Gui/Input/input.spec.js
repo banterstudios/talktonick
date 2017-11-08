@@ -19,7 +19,7 @@ describe('components/Gui/Input', () => {
     }
   })
 
-  describe('renders', () => {
+  describe('@renders', () => {
     it('in default state', () => {
       const component = mount(<Input { ...initialProps} />)
 

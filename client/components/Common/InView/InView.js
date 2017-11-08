@@ -7,6 +7,11 @@ import { isElemInView, testForPassiveScroll } from 'client/utils/domUtils'
 import { throttle } from 'client/utils/commonUtils'
 
 class InView extends Component {
+  static propTypes = {
+    onVisible: PropTypes.func,
+    onHidden: PropTypes.func
+  }
+
   constructor (props) {
     super(props)
 
@@ -26,16 +31,6 @@ class InView extends Component {
     this.containerRef = ref
   }
 
-  handleEvent = throttle(() => {
-    const { onVisible, onHidden } = this.props
-
-    if (isElemInView(this.containerRef)) {
-      onVisible && onVisible()
-    } else {
-      onHidden && onHidden()
-    }
-  }, 100)
-
   bindEvents = () => {
     window.addEventListener('scroll', this.handleEvent, this.passiveData)
     window.addEventListener('resize', this.handleEvent, false)
@@ -45,6 +40,16 @@ class InView extends Component {
     window.removeEventListener('scroll', this.handleEvent, this.passiveData)
     window.removeEventListener('resize', this.handleEvent, false)
   }
+
+  handleEvent = throttle(() => {
+    const { onVisible, onHidden } = this.props
+
+    if (isElemInView(this.containerRef)) {
+      onVisible && onVisible()
+    } else {
+      onHidden && onHidden()
+    }
+  }, 100)
 
   render () {
     const { children } = this.props
