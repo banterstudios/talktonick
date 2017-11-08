@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Common/InView @renders in default state 1`] = `<div />`;
+
+exports[`components/Common/InView @renders with react element children 1`] = `
+<div>
+  <div />
+</div>
+`;
+
+exports[`components/Common/InView @renders with react node children 1`] = `
+<div>
+  <DummyComponent />
+</div>
+`;
