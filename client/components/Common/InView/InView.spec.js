@@ -1,23 +1,17 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import InView from './Inview'
 
 const DummyComponent = () => <div />
-
-jest.useFakeTimers()
 
 describe('components/Common/InView', () => {
   let initialProps
 
   beforeEach(() => {
     initialProps = {
-      onVisible: jest.fn(() => {
-        console.log('yes!')
-      }),
-      onHidden: jest.fn(() => {
-        console.log('no!')
-      })
+      onVisible: jest.fn(),
+      onHidden: jest.fn()
     }
   })
 
@@ -41,18 +35,6 @@ describe('components/Common/InView', () => {
 
       expect(toJson(component)).toMatchSnapshot()
       component.unmount()
-    })
-  })
-
-  describe('@instance methods', () => {
-    describe('@handleEvent', () => {
-      it('should call onVisible', () => {
-        const component = shallow(<InView { ...initialProps } />)
-        component.instance().handleEvent()
-
-        expect(initialProps.onHidden).toHaveBeenCalledTimes(1)
-        component.unmount()
-      })
     })
   })
 })

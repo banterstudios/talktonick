@@ -1,30 +1,51 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import PropTypes from 'prop-types'
 
 import { isElemInView, testForPassiveScroll } from 'client/utils/domUtils'
 
 import { throttle } from 'client/utils/commonUtils'
+import { setInterval } from 'timers';
 
-class InView extends Component {
+class InView extends PureComponent {
   static propTypes = {
-    onVisible: PropTypes.func,
-    onHidden: PropTypes.func
+    onChange: PropTypes.func,
+    scrollCheck: PropTypes.bool,
+    resizeCheck: PropTypes.bool,
+    timerCheck: PropTypes.bool,
+    timerDelay: PropTypes.number
+  }
+
+  static defaultProps = {
+    scrollCheck: true,
+    resizeCheck: true,
+    timerCheck: false,
+    timerDelay: 200
   }
 
   constructor (props) {
     super(props)
 
+    this.state = {
+      isVisible: null
+    }
+
     this.passiveData = testForPassiveScroll() ? { passive: true } : false
     this.containerRef = null
+    this.timer = null
   }
 
   componentDidMount () {
-    this.bindEvents()
+    this.start()
   }
 
   componentWillUnmount () {
     this.unBindEvents()
+  }
+
+  start = () => {
+    this.bindEvents()
+    this.performCheck()
   }
 
   storeRef = (ref) => {
@@ -32,24 +53,49 @@ class InView extends Component {
   }
 
   bindEvents = () => {
-    window.addEventListener('scroll', this.handleEvent, this.passiveData)
-    window.addEventListener('resize', this.handleEvent, false)
+    const { scrollCheck, resizeCheck, timerCheck, timerDelay } = this.props
+
+    if (scrollCheck) {
+      window.addEventListener('scroll', this.handleEvent, this.passiveData)
+    }
+
+    if (resizeCheck) {
+      window.addEventListener('resize', this.handleEvent, false)
+    }
+
+    if (timerCheck) {
+      this.timer = setInterval(this.performCheck, timerDelay)
+    }
   }
 
   unBindEvents = () => {
-    window.removeEventListener('scroll', this.handleEvent, this.passiveData)
-    window.removeEventListener('resize', this.handleEvent, false)
+    const { scrollCheck, resizeCheck, timerCheck } = this.props
+
+    if (scrollCheck) {
+      window.removeEventListener('scroll', this.handleEvent, this.passiveData)
+    }
+
+    if (resizeCheck) {
+      window.removeEventListener('resize', this.handleEvent, false)
+    }
+
+    if (timerCheck) {
+      this.timer = clearInterval(this.timer)
+    }
   }
 
-  handleEvent = throttle(() => {
-    const { onVisible, onHidden } = this.props
+  handleEvent = throttle(this.performCheck, 100)
 
-    if (isElemInView(this.containerRef)) {
-      onVisible && onVisible()
-    } else {
-      onHidden && onHidden()
+  performCheck = () => {
+    const { onChange } = this.props
+
+    const isVisible = isElemInView(this.containerRef)
+
+    if (isVisible !== this.state.isVisible) {
+      this.setState({ isVisible })
+      onChange && onChange(isVisible)
     }
-  }, 100)
+  }
 
   render () {
     const { children } = this.props

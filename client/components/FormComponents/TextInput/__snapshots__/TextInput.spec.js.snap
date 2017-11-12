@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/FormComponents/TextInput renders in default state 1`] = `
+exports[`components/FormComponents/TextInput @renders in default state 1`] = `
 <TextInput
   disabled={false}
   name="input"

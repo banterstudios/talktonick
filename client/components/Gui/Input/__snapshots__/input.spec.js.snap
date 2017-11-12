@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Gui/Input renders in default state 1`] = `
+exports[`components/Gui/Input @renders in default state 1`] = `
 <glamorous(input)
   disabled={false}
   name="input"

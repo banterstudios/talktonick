@@ -1,5 +1,7 @@
 import 'client/styles/index.scss'
 
+import 'client/utils/polyfills'
+
 import { render } from 'react-dom'
 
 import router from 'client/config/router'

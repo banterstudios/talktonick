@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Gui/LazyImage renders in default state 1`] = `
+exports[`components/Gui/LazyImage @renders in default state 1`] = `
 <LazyImage>
   <div />
 </LazyImage>
