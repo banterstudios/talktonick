@@ -6,6 +6,30 @@ import PropTypes from 'prop-types'
 
 import { getImage } from 'client/utils/imageUtils'
 
+import glamorous from 'glamorous'
+
+const ImageContainer = glamorous.div(({ loaded }) => ({
+  position: 'relative',
+  opacity: loaded ? 1 : 0,
+  transition: 'opacity .4s ease-out'
+}))
+
+const Image = glamorous.img({
+  position: 'relative',
+  width: '100%',
+  verticalAlign: 'top'
+})
+
+const BgImage = glamorous.div(({ loaded, bgSize, bgPos, bgRepeat, bgImage }) => ({
+  position: 'relative',
+  width: '100%',
+  backgroundPosition: bgPos,
+  backgroundSize: bgSize,
+  backgroundRepeat: bgRepeat,
+  backgroundImage: bgImage
+
+}))
+
 class LazyImage extends Component {
   static PropTypes = {
     src: PropTypes.string,
@@ -13,7 +37,11 @@ class LazyImage extends Component {
   }
 
   static defaultProps = {
-    useBgImage: false
+    useBgImage: false,
+    bgPos: 'center',
+    bgSize: 'cover',
+    bgRepeat: 'no-repeat',
+    bgImage: ''
   }
 
   constructor (props) {
@@ -85,8 +113,33 @@ class LazyImage extends Component {
 
   renderImage () {
     const {
-      useBgImage
+      useBgImage,
+      children,
+      src,
+      ...rest
     } = this.props
+
+    const {
+      isLoaded
+    } = this.state
+
+    return (
+      <ImageContainer loaded={ isLoaded }>
+        {
+          useBgImage
+          ? (
+            <BgImage { ...rest } bgImage={ src }>
+              { children }
+            </BgImage>
+          )
+          : (
+            <Image { ...rest }>
+              { children }
+            </Image>
+          )
+        }
+      </ImageContainer>
+    )
   }
 
   render () {
