@@ -2,8 +2,10 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import glamorous from 'glamorous'
 
-const Paragraph = glamorous.p(() => ({
-  position: 'relative'
+const Paragraph = glamorous.p(({ theme: { fontPrimary } }) => ({
+  position: 'relative',
+  fontFamily: fontPrimary,
+  margin: 0
 }))
 
 class Copy extends PureComponent {
