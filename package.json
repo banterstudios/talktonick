@@ -71,6 +71,7 @@
     "babel-preset-node7": "^1.5.0",
     "babel-runtime": "^6.26.0",
     "body-parser": "^1.17.2",
+    "bootstrap-grid": "^2.0.1",
     "classnames": "^2.2.5",
     "es6-promise": "^4.1.0",
     "express": "^4.15.3",
@@ -82,6 +83,7 @@
     "normalize.css": "^6.0.0",
     "prop-types": "^15.5.8",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.31.5",
     "react-document-title": "^2.0.3",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
@@ -100,6 +102,7 @@
   "jest": {
     "setupTestFrameworkScriptFile": "./test/setUpTests.js",
     "moduleNameMapper": {
+      "^.+\\.(css|less)$": "<rootDir>/test/cssStub.js",
       "^client[/](.+)": "<rootDir>/client/$1",
       "^server[/](.+)": "<rootDir>/server/$1"
     }

@@ -5,6 +5,11 @@ import InView from './Inview'
 
 const DummyComponent = () => <div />
 
+jest.mock('client/utils/domUtils', () => ({
+  isElemInView: () => true,
+  testForPassiveScroll: () => false
+}))
+
 describe('components/Common/InView', () => {
   let initialProps
 

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import { isElemInView, testForPassiveScroll } from 'client/utils/domUtils'
 
 import { throttle } from 'client/utils/commonUtils'
-import { setInterval } from 'timers';
 
 class InView extends PureComponent {
   static propTypes = {

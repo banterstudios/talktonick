@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-
 import { connect } from 'react-redux'
-
 import Wrapper from 'client/components/Gui/Wrapper'
 
 @connect(null, null)
