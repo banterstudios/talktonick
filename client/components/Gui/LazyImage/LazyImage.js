@@ -33,15 +33,18 @@ const BgImage = glamorous.div(({ loaded, bgSize, bgPos, bgRepeat, bgImage }) => 
 class LazyImage extends Component {
   static PropTypes = {
     src: PropTypes.string,
-    useBgImage: PropTypes.bool
+    useBgImage: PropTypes.bool,
+    alt: PropTypes.string,
+    bgPos: PropTypes.string,
+    bgSize: PropTypes.string,
+    bgRepeat: PropTypes.string
   }
 
   static defaultProps = {
     useBgImage: false,
     bgPos: 'center',
     bgSize: 'cover',
-    bgRepeat: 'no-repeat',
-    bgImage: ''
+    bgRepeat: 'no-repeat'
   }
 
   constructor (props) {
@@ -116,6 +119,10 @@ class LazyImage extends Component {
       useBgImage,
       children,
       src,
+      alt,
+      bgPos,
+      bgSize,
+      bgRepeat,
       ...rest
     } = this.props
 
@@ -128,12 +135,12 @@ class LazyImage extends Component {
         {
           useBgImage
           ? (
-            <BgImage { ...rest } bgImage={ src }>
+            <BgImage bgImage={src} bgPos={bgPos} bgSize={bgSize} bgRepeat={bgRepeat} {...rest}>
               { children }
             </BgImage>
           )
           : (
-            <Image { ...rest }>
+            <Image src={src} alt={alt} {...rest}>
               { children }
             </Image>
           )

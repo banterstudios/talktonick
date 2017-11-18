@@ -8,12 +8,24 @@ describe('components/Gui/LazyImage', () => {
 
   beforeEach(() => {
     initialProps = {
+      src: '',
+      alt: '',
+      bgPos: '',
+      bgSize: '',
+      bgRepeat: ''
     }
   })
 
   describe('@renders', () => {
     it('in default state', () => {
       const component = mount(<LazyImage { ...initialProps } />)
+
+      expect(toJson(component)).toMatchSnapshot()
+      component.unmount()
+    })
+
+    it('a div with a background image', () => {
+      const component = mount(<LazyImage { ...initialProps } useBgImage />)
 
       expect(toJson(component)).toMatchSnapshot()
       component.unmount()
