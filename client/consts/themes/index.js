@@ -6,6 +6,9 @@ export const themeVariables = {
   fontPrimary: `${TYPOG.montserrat}, ${TYPOG.sansSerif}`,
 
   // Colors
+  colorTextPrimary: COLORS.white,
+
+  // Background
   bgPrimary: COLORS.arsenic,
 
   // Header
