@@ -1,3 +1,6 @@
-export const black = '#000'
-export const white = '#fff'
-export const arsenic = '#413E4A'
+module.exports = {
+  black: '#000',
+  white: '#fff',
+  arsenic: '#413E4A',
+  teaRose: '#73626E'
+}

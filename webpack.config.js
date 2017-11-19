@@ -43,7 +43,14 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'postcss', 'sass']
+        loaders: ['style', 'css', 'postcss', 'sass', {
+          loader: '@epegzz/sass-vars-loader',
+          options: {
+            files: [
+              path.resolve(__dirname, 'client/consts/themes/index.js')
+            ]
+          }
+        }]
       },
       {
         test: /\.css$/,

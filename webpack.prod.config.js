@@ -49,7 +49,15 @@ module.exports = {
           use: [
             'css-loader?-autoprefixer&sourceMap',
             'postcss-loader',
-            'sass-loader?sourceMap'
+            'sass-loader?sourceMap',
+            {
+              loader: '@epegzz/sass-vars-loader',
+              options: {
+                files: [
+                  path.resolve(__dirname, 'client/consts/themes/index.js')
+                ]
+              }
+            }
           ]
         })
       },

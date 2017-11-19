@@ -1,2 +1,5 @@
-export const montserrat = `'Montserrat'`
-export const sansSerif = 'sans-serif'
+module.exports = {
+  montserrat: `'Montserrat'`,
+  helveticaNeue: 'Helvetica Neue',
+  sansSerif: 'sans-serif'
+}

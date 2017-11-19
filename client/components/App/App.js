@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 
 import { ThemeProvider } from 'glamorous'
-import { themeVariables } from 'client/consts/themes'
+import themeVariables from 'client/consts/themes'
 
 import MainLayout from 'client/components/Layouts/Main'
 

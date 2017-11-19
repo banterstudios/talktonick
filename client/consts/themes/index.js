@@ -1,15 +1,16 @@
-import * as COLORS from './colors'
-import * as TYPOG from './typography'
+const COLORS = require('./colors')
+const TYPOG = require('./typography')
 
-export const themeVariables = {
+module.exports = {
   // Fonts
-  fontPrimary: `${TYPOG.montserrat}, ${TYPOG.sansSerif}`,
+  fontPrimary: `${TYPOG.montserrat}, ${TYPOG.helveticaNeue}, ${TYPOG.sansSerif}`,
 
   // Colors
   colorTextPrimary: COLORS.white,
 
   // Background
   bgPrimary: COLORS.arsenic,
+  bgSecondary: COLORS.teaRose,
 
   // Header
   headerHeight: '45px'
