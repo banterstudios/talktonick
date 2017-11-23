@@ -11,11 +11,7 @@ const Paragraph = glamorous.p(({ theme: { fontPrimary, colorTextPrimary } }) => 
 
 class Copy extends PureComponent {
   static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-      PropTypes.node
-    ])
+    children: PropTypes.any
   }
 
   render () {
