@@ -10,16 +10,14 @@ import { Provider } from 'react-redux'
 
 import store from 'client/store'
 
-const router = (
-  <Provider store={store}>
-    <Routes>
-      <App />
-    </Routes>
-  </Provider>
-)
-
-if (module.hot) {
-  module.hot.accept()
+const Router = () => {
+  return (
+    <Provider store={store}>
+      <Routes>
+        <App />
+      </Routes>
+    </Provider>
+  )
 }
 
-export default router
+export default Router

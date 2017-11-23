@@ -4,13 +4,13 @@ import glamorous from 'glamorous'
 import { Grid, Row, Col } from 'react-bootstrap'
 import Copy from 'client/components/Typography/Copy'
 
-const HeaderWrapper = glamorous.header(({ theme: { bgPrimary, headerHeight } }) => ({
+const HeaderWrapper = glamorous.header(({ theme: { headerBgColor, headerHeight } }) => ({
   position: 'fixed',
   top: '0',
   left: '0',
   width: '100%',
   height: headerHeight,
-  background: bgPrimary,
+  background: headerBgColor,
   zIndex: '99'
 }))
 

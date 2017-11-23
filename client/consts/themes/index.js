@@ -6,12 +6,14 @@ module.exports = {
   fontPrimary: `${TYPOG.montserrat}, ${TYPOG.helveticaNeue}, ${TYPOG.sansSerif}`,
 
   // Colors
-  colorTextPrimary: COLORS.white,
+  colorTextPrimary: COLORS.platinum,
 
   // Background
-  bgPrimary: COLORS.arsenic,
-  bgSecondary: COLORS.teaRose,
+  bgPrimary: COLORS.onyx,
+  bgSecondary: COLORS.jet,
+  bgTertiary: COLORS.raisinBlack,
 
   // Header
-  headerHeight: '45px'
+  headerHeight: '45px',
+  headerBgColor: COLORS.jet
 }

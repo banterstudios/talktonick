@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import TextInput from 'client/components/FormComponents/TextInput'
+import LoginForm from 'client/components/Login/LoginForm'
 
 import Wrapper from 'client/components/Gui/Wrapper'
 
@@ -23,8 +23,7 @@ class Login extends Component {
   render () {
     return (
       <Wrapper className='login'>
-        Hello login!
-        <TextInput />
+        <LoginForm form='login-form' />
       </Wrapper>
     )
   }

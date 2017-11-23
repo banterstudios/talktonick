@@ -4,8 +4,8 @@ const path = require('path')
 module.exports = {
   entry: [
     'babel-polyfill',
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    // 'webpack-hot-middleware/client',
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client',
     './client/index.js'
   ],
   output: {
@@ -40,7 +40,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel']
+        loaders: ['babel']
       },
       {
         test: /\.scss$/,
