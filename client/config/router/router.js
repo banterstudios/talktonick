@@ -18,4 +18,8 @@ const router = (
   </Provider>
 )
 
+if (module.hot) {
+  module.hot.accept()
+}
+
 export default router

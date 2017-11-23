@@ -4,7 +4,8 @@ const path = require('path')
 module.exports = {
   entry: [
     'babel-polyfill',
-    'webpack-hot-middleware/client',
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+    // 'webpack-hot-middleware/client',
     './client/index.js'
   ],
   output: {

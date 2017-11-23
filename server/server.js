@@ -31,11 +31,21 @@ if (isDev) {
   const compiler = webpack(webpackConfig)
 
   app.use(webpackDevMiddleware(compiler, {
+    hot: true,
+    filename: webpackConfig.output.filename,
     noInfo: true,
+    stats: {
+      colors: true
+    },
+    historyApiFallback: true,
     publicPath: webpackConfig.output.publicPath
   }))
 
-  app.use(webpackHotMiddleware(compiler))
+  app.use(webpackHotMiddleware(compiler, {
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000
+  }))
 }
 
 const handlebarsConfig = {
