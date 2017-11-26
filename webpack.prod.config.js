@@ -7,7 +7,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: path.join(__dirname, '/server/views/index.handlebars'),
   filename: 'views/index.handlebars',
-  inject: 'body'
+  inject: 'body',
+  minify: {
+    collapseWhitespace: true,
+    collapseInlineTagWhitespace: true,
+    removeComments: true,
+    removeRedundantAttributes: true
+  }
 })
 
 const cleanWebpackBuild = new CleanWebpackPlugin(['build'], {
@@ -84,18 +90,36 @@ module.exports = {
   },
   plugins: [
     cleanWebpackBuild,
-    new ExtractTextPlugin('css/[name].[hash].css'),
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true
+      },
+      output: {
+        comments: false
+      }
+    }),
+    new ExtractTextPlugin('css/[name].[hash].css'),
+    new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.ProvidePlugin({
       'Promise': 'es6-promise',
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
     HTMLWebpackPluginConfig
-  ]
+  ],
+
+  devtool: 'cheap-module-source-map'
 }
