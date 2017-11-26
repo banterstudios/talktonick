@@ -14,6 +14,8 @@ import express from 'express'
 
 import { configureStore } from 'client/store'
 
+import serializeJS from 'serialize-javascript'
+
 const router = express.Router()
 
 // Deal with the home page
@@ -35,7 +37,7 @@ const controller = (req, res) => {
     initialHtml: html,
     initialCSS: css,
     initialIds: JSON.stringify(ids),
-    initialJSONState: JSON.stringify(store.getState())
+    initialJSONState: serializeJS(store.getState(), { isJSON: true })
   }
 
   // Render the index.handlebars with the template data.
