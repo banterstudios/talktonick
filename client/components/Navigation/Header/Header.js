@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Wrapper from 'client/components/Gui/Wrapper'
 import glamorous from 'glamorous'
 import { Grid, Row, Col } from 'react-bootstrap'
-import Copy from 'client/components/Typography/Copy'
+import Title from 'client/components/Typography/Title'
 
 const HeaderWrapper = glamorous.header(({ theme: { headerBgColor, headerHeight } }) => ({
   position: 'fixed',
@@ -23,7 +23,7 @@ class Header extends Component {
             <Row>
               <Col xs={2} />
               <Col xs={8}>
-                <Copy>Talk To Nick</Copy>
+                <Title>Talk To Nick</Title>
               </Col>
               <Col xs={2} />
             </Row>

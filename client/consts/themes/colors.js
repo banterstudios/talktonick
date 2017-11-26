@@ -6,8 +6,4 @@ module.exports = {
   darkLiver: '#4f4c45',
   gunMetal: '#272e38',
   platinum: '#e6eae9'
-
-  // jet: '#2F3136',
-  // onyx: '#36393F',
-  // raisinBlack: '#202225'
 }

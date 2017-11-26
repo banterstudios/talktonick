@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import glamorous from 'glamorous'
 
-const Paragraph = glamorous.p(({ theme: { fontPrimary, colorTextPrimary } }) => ({
+const Paragraph = glamorous.p(({ theme: { fontSecondary, colorTextPrimary } }) => ({
   position: 'relative',
-  fontFamily: fontPrimary,
+  fontFamily: fontSecondary,
   color: colorTextPrimary,
   margin: 0
 }))

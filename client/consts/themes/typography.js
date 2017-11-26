@@ -1,5 +1,6 @@
 module.exports = {
-  montserrat: `'Montserrat'`,
-  helveticaNeue: 'Helvetica Neue',
-  sansSerif: 'sans-serif'
+  raleway: `'Raleway'`,
+  openSans: `'Open Sans'`,
+  sansSerif: 'sans-serif',
+  helvetica: 'helvetia'
 }
