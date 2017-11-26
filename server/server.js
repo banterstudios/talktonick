@@ -48,8 +48,8 @@ if (isDev) {
 }
 
 const handlebarsConfig = {
-  defaultLayout: 'main',
-  layoutsDir: path.join(__dirname, './views/layouts')
+  defaultLayout: 'index',
+  layoutsDir: path.join(__dirname, '../build/views')
 }
 
 app.engine('handlebars',
@@ -61,7 +61,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // view engine setup
-app.set('views', path.join(__dirname, './views'))
+app.set('views', path.join(__dirname, '../build/views'))
 
 app.set('view engine', 'handlebars')
 

@@ -48,6 +48,8 @@
     "exports-loader": "^0.6.4",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
+    "html-webpack-harddisk-plugin": "^0.1.0",
+    "html-webpack-plugin": "^2.30.1",
     "import-glob-loader": "^1.1.0",
     "imports-loader": "^0.7.1",
     "jest": "^21.2.1",
@@ -77,6 +79,7 @@
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
     "glamor": "^2.20.40",
+    "glamorous": "^4.11.0",
     "immutability-helper": "^2.4.0",
     "isdev": "^1.0.1",
     "morgan": "^1.8.2",
@@ -103,7 +106,7 @@
   "jest": {
     "setupTestFrameworkScriptFile": "./test/setUpTests.js",
     "moduleNameMapper": {
-      "^.+\\.(css|less)$": "<rootDir>/test/cssStub.js",
+      "^.+\\.(css|less|scss)$": "<rootDir>/test/cssStub.js",
       "^client[/](.+)": "<rootDir>/client/$1",
       "^server[/](.+)": "<rootDir>/server/$1"
     }

@@ -2,6 +2,13 @@ const webpack = require('webpack')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: path.join(__dirname, '/server/views/index.handlebars'),
+  filename: 'views/index.handlebars',
+  inject: 'body'
+})
 
 const cleanWebpackBuild = new CleanWebpackPlugin(['build'], {
   root: __dirname,
@@ -17,7 +24,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, '/build'),
-    filename: 'js/app.js',
+    filename: 'js/app.[hash].js',
     publicPath: '/static'
   },
   resolve: {
@@ -69,7 +76,7 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg|ttf|woff|eot|mp4)$/i,
         loader: 'file-loader',
         query: {
-          name: 'assets/[path][name].[ext]',
+          name: 'assets/[path][name].[hash].[ext]',
           context: './client/assets'
         }
       }
@@ -77,11 +84,7 @@ module.exports = {
   },
   plugins: [
     cleanWebpackBuild,
-    new ExtractTextPlugin('css/[name].css'),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'js/vendor.js'
-    }),
+    new ExtractTextPlugin('css/[name].[hash].css'),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.DefinePlugin({
@@ -92,7 +95,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       'Promise': 'es6-promise',
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    })
-  ],
-  devtool: 'cheap-module-source-map'
+    }),
+    HTMLWebpackPluginConfig
+  ]
 }

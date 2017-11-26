@@ -1,5 +1,18 @@
 const webpack = require('webpack')
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
+
+const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: path.join(__dirname, '/server/views/index.handlebars'),
+  alwaysWriteToDisk: true,
+  filename: 'index.handlebars',
+  inject: 'body'
+})
+
+const HTMLWebpackHardDiskPlugin = new HtmlWebpackHarddiskPlugin({
+  outputPath: path.join(__dirname, '/build/views')
+})
 
 module.exports = {
   entry: [
@@ -68,6 +81,8 @@ module.exports = {
     ]
   },
   plugins: [
+    HTMLWebpackPluginConfig,
+    HTMLWebpackHardDiskPlugin,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       'Promise': 'es6-promise',
