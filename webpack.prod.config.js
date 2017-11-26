@@ -60,7 +60,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            'css-loader?-autoprefixer&sourceMap',
+            'css-loader?-autoprefixer&sourceMap&minimize',
             'postcss-loader',
             'sass-loader?sourceMap',
             {
