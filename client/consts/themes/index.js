@@ -7,13 +7,13 @@ module.exports = {
 
   // Colors
   colorTextPrimary: COLORS.platinum,
+  colorTextHighlight: COLORS.carrotOrange,
 
   // Background
-  bgPrimary: COLORS.onyx,
-  bgSecondary: COLORS.jet,
-  bgTertiary: COLORS.raisinBlack,
+  bgPrimary: COLORS.darkGunMetal,
+  bgSecondary: COLORS.gunMetal,
 
   // Header
   headerHeight: '45px',
-  headerBgColor: COLORS.jet
+  headerBgColor: COLORS.darkGunMetal
 }
