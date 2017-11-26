@@ -17,9 +17,7 @@ exports[`components/Gui/LazyImage @renders a div with a background image 1`] = `
     timerDelay={200}
   >
     <div>
-      <glamorous(div)
-        loaded={undefined}
-      >
+      <glamorous(div)>
         <div
           className="css-1kyj4b8"
         >
@@ -57,9 +55,7 @@ exports[`components/Gui/LazyImage @renders in default state 1`] = `
     timerDelay={200}
   >
     <div>
-      <glamorous(div)
-        loaded={undefined}
-      >
+      <glamorous(div)>
         <div
           className="css-1kyj4b8"
         >
