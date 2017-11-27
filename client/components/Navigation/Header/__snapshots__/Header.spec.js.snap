@@ -44,15 +44,17 @@ exports[`components/Navigation/Header @renders should render correctly 1`] = `
                     <div
                       className="col-xs-8"
                     >
-                      <Copy>
-                        <glamorous(p)>
-                          <p
+                      <Title
+                        type="h1"
+                      >
+                        <glamorous(h1)>
+                          <h1
                             className="css-jm9yv1"
                           >
                             Talk To Nick
-                          </p>
-                        </glamorous(p)>
-                      </Copy>
+                          </h1>
+                        </glamorous(h1)>
+                      </Title>
                     </div>
                   </Col>
                   <Col
