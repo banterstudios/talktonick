@@ -79,7 +79,7 @@ module.exports = {
         loader: 'style!css'
       },
       {
-        test: /\.(jpe?g|png|gif|svg|ttf|woff|eot|mp4)$/i,
+        test: /\.(jpe?g|png|gif|svg|ttf|woff|eot|mp4|woff2)$/i,
         loader: 'file-loader',
         query: {
           name: 'assets/[path][name].[hash].[ext]',
