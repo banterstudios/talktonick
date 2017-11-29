@@ -83,8 +83,6 @@ class InView extends PureComponent {
     }
   }
 
-  handleEvent = throttle(this.performCheck, 100)
-
   performCheck = () => {
     const { onChange } = this.props
 
@@ -95,6 +93,8 @@ class InView extends PureComponent {
       onChange && onChange(isVisible)
     }
   }
+
+  handleEvent = throttle(this.performCheck, 100)
 
   render () {
     const { children } = this.props

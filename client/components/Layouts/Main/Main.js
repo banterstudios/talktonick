@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Wrapper from 'client/components/Gui/Wrapper'
-import Header from 'client/components/Navigation/Header'
+import Header from 'client/components/Common/Header'
 import glamorous from 'glamorous'
 
 const Content = glamorous.div(({ theme: { headerHeight } }) => ({

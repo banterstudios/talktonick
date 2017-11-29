@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Navigation/Header @renders should render correctly 1`] = `
+<Header>
+  <glamorous(header)>
+    <header
+      className="css-p4zpk5"
+    >
+      <glamorous(section)
+        className="header"
+      >
+        <section
+          className="css-4kgshc header"
+        >
+          <Grid
+            bsClass="container"
+            componentClass="div"
+            fluid={false}
+          >
+            <div
+              className="container"
+            >
+              <Row
+                bsClass="row"
+                componentClass="div"
+              >
+                <div
+                  className="row"
+                >
+                  <Navbar>
+                    <glamorous(nav)
+                      role="navigation"
+                    >
+                      <nav
+                        className="css-4kgshc"
+                        role="navigation"
+                      />
+                    </glamorous(nav)>
+                  </Navbar>
+                </div>
+              </Row>
+            </div>
+          </Grid>
+        </section>
+      </glamorous(section)>
+    </header>
+  </glamorous(header)>
+</Header>
+`;

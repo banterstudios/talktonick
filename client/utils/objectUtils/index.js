@@ -3,7 +3,8 @@ import {
   isObject,
   isTruthy,
   isString,
-  allowOnly
+  allowOnly,
+  omit
 } from './objectUtils'
 
 export {
@@ -11,5 +12,6 @@ export {
   isObject,
   isTruthy,
   isString,
-  allowOnly
+  allowOnly,
+  omit
 }
