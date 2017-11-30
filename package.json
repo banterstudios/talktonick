@@ -101,7 +101,6 @@
     "reselect": "^3.0.1",
     "serialize-javascript": "^1.4.0",
     "webpack-hot-middleware": "^2.18.2",
-    "webpack-isomorphic-tools": "^3.0.5",
     "whatwg-fetch": "^2.0.3"
   },
   "jest": {
