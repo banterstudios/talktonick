@@ -2,6 +2,8 @@ const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: path.join(__dirname, '/server/views/index.handlebars'),
@@ -13,6 +15,11 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 const HTMLWebpackHardDiskPlugin = new HtmlWebpackHarddiskPlugin({
   outputPath: path.join(__dirname, '/build/views')
 })
+
+const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
+  from: 'client/assets/images/',
+  to: 'assets/images/'
+}])
 
 module.exports = {
   entry: [
@@ -81,8 +88,12 @@ module.exports = {
     ]
   },
   plugins: [
+    new WriteFilePlugin({
+      test: /\.(jpe?g|png|gif|svg)$/
+    }),
     HTMLWebpackPluginConfig,
     HTMLWebpackHardDiskPlugin,
+    CopyWebpackPluginConfig,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       'Promise': 'es6-promise',

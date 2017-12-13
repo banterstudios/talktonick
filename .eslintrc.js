@@ -8,7 +8,7 @@ module.exports = {
     "standard",
     "promise",
     "react",
-    "plugin:jsx-a11y/recommended"
+    "jsx-a11y"
   ],
   "env": {
     "es6": true,
