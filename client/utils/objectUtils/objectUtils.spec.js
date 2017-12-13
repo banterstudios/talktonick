@@ -1,4 +1,4 @@
-import { allowOnly, omit } from './objectUtils'
+import { allowOnly, omit, checkIfValueIsAllowedOrSetDefault } from './objectUtils'
 
 describe('utils/objectUtils', () => {
   describe('@omit', () => {
@@ -71,6 +71,24 @@ describe('utils/objectUtils', () => {
       }
 
       expect(allowOnly(obj, [])).toMatchObject({})
+    })
+  })
+
+  describe('@checkIfValueIsAllowedOrSetDefault', () => {
+    const allowedValues = ['this', 'should', 'be', 'allowed']
+
+    it('should return the default value as the value passed in does not meet the criteria', () => {
+      const value = 'test'
+      const defaultValue = 'should set this'
+
+      expect(checkIfValueIsAllowedOrSetDefault(value, allowedValues, defaultValue)).toEqual(defaultValue)
+    })
+
+    it('should return the value as the value passed in meets the criteria', () => {
+      const value = 'allowed'
+      const defaultValue = 'dont set this'
+
+      expect(checkIfValueIsAllowedOrSetDefault(value, allowedValues, defaultValue)).toEqual(value)
     })
   })
 })

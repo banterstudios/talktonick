@@ -4,7 +4,8 @@ import {
   isTruthy,
   isString,
   allowOnly,
-  omit
+  omit,
+  checkIfValueIsAllowedOrSetDefault
 } from './objectUtils'
 
 export {
@@ -13,5 +14,6 @@ export {
   isTruthy,
   isString,
   allowOnly,
-  omit
+  omit,
+  checkIfValueIsAllowedOrSetDefault
 }

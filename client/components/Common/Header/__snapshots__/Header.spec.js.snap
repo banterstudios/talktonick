@@ -1,49 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Navigation/Header @renders should render correctly 1`] = `
-<Header>
-  <glamorous(header)>
-    <header
-      className="css-p4zpk5"
-    >
-      <glamorous(section)
-        className="header"
+exports[`components/Common/Header @renders should render correctly 1`] = `
+<glamorous(header)>
+  <glamorous(section)
+    className="header"
+  >
+    <glamorous(div)>
+      <Logo
+        modifier="sm"
+      />
+    </glamorous(div)>
+    <glamorous(div)>
+      <Grid
+        bsClass="container"
+        componentClass="div"
+        fluid={false}
       >
-        <section
-          className="css-4kgshc header"
+        <Row
+          bsClass="row"
+          componentClass="div"
         >
-          <Grid
-            bsClass="container"
-            componentClass="div"
-            fluid={false}
-          >
-            <div
-              className="container"
-            >
-              <Row
-                bsClass="row"
-                componentClass="div"
+          <Navbar>
+            <NavItem>
+              <withRouter(NavLink)
+                href="/"
               >
-                <div
-                  className="row"
-                >
-                  <Navbar>
-                    <glamorous(nav)
-                      role="navigation"
-                    >
-                      <nav
-                        className="css-4kgshc"
-                        role="navigation"
-                      />
-                    </glamorous(nav)>
-                  </Navbar>
-                </div>
-              </Row>
-            </div>
-          </Grid>
-        </section>
-      </glamorous(section)>
-    </header>
-  </glamorous(header)>
-</Header>
+                Home
+              </withRouter(NavLink)>
+            </NavItem>
+            <NavItem>
+              <withRouter(NavLink)
+                href="/about"
+              >
+                About
+              </withRouter(NavLink)>
+            </NavItem>
+          </Navbar>
+        </Row>
+      </Grid>
+    </glamorous(div)>
+  </glamorous(section)>
+</glamorous(header)>
 `;

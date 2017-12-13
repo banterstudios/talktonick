@@ -27,7 +27,6 @@ const BgImage = glamorous.div(({ loaded, bgSize, bgPos, bgRepeat, bgImage }) => 
   backgroundSize: bgSize,
   backgroundRepeat: bgRepeat,
   backgroundImage: bgImage
-
 }))
 
 class LazyImage extends Component {
@@ -54,7 +53,7 @@ class LazyImage extends Component {
       loaded: false,
       error: false,
       isLoading: false,
-      visible: null
+      isVisible: null
     }
 
     this.imagePromise = null
@@ -88,9 +87,9 @@ class LazyImage extends Component {
   }
 
   fetchImage (src = this.props.src) {
-    const { isLoaded, isLoading } = this.state
+    const { loaded, isLoading } = this.state
 
-    if (!src || isLoaded || isLoading) {
+    if (!src || loaded || isLoading) {
       return false
     }
 
@@ -110,6 +109,7 @@ class LazyImage extends Component {
   }
 
   handleVisibility = (isVisible) => {
+    console.log('is visible: ', isVisible)
     this.setState({ isVisible })
     isVisible && this.fetchImage()
   }
@@ -127,11 +127,11 @@ class LazyImage extends Component {
     } = this.props
 
     const {
-      isLoaded
+      loaded
     } = this.state
 
     return (
-      <ImageContainer loaded={ isLoaded }>
+      <ImageContainer loaded={ loaded }>
         {
           useBgImage
           ? (

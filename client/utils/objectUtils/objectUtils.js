@@ -27,3 +27,7 @@ export const omit = (obj, props) => {
 export const allowOnly = (obj, props) => {
   return allowOrOmit(obj, props, true)
 }
+
+export const checkIfValueIsAllowedOrSetDefault = (value = '', allowedProps = [], defaultValue = '') => {
+  return !allowedProps.includes(value) ? defaultValue : value
+}

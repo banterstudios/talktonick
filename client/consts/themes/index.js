@@ -24,6 +24,10 @@ module.exports = {
   headerHeight: '60px',
   headerBgColor: COLORS.darkGunMetal,
 
+  // Logo
+  logoSmWidth: '40px',
+  logoSmHeight: '40px',
+
   // font size
   fontSizeTitle: '45px',
   fontSizeMdTitle: '28px',

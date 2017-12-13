@@ -5,7 +5,7 @@ import { Grid, Row } from 'react-bootstrap'
 import Navbar from 'client/components/Navigation/Navbar'
 import NavLink from 'client/components/Navigation/NavLink'
 import NavItem from 'client/components/Navigation/NavItem'
-import LazyImage from 'client/components/Gui/LazyImage'
+import Logo from 'client/components/Common/Logo'
 
 const HeaderWrapper = glamorous.header(({ theme: { headerBgColor, headerHeight } }) => ({
   position: 'fixed',
@@ -17,24 +17,40 @@ const HeaderWrapper = glamorous.header(({ theme: { headerBgColor, headerHeight }
   zIndex: '99'
 }))
 
+const LogoWrapper = glamorous.div(() => ({
+  position: 'absolute',
+  top: '50%',
+  left: '10px',
+  transform: 'translateY(-50%)'
+}))
+
+const GridWrapper = glamorous.div(({ theme: { headerHeight } }) => ({
+  position: 'relative',
+  padding: `0 60px`
+}))
+
 class Header extends Component {
   render () {
     return (
       <HeaderWrapper>
         <Wrapper className='header'>
-          <LazyImage src={'/static/assets/images/logo.png'} />
-          <Grid>
-            <Row>
-              <Navbar>
-                <NavItem>
-                  <NavLink href='/'>Home</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href='/about'>About</NavLink>
-                </NavItem>
-              </Navbar>
-            </Row>
-          </Grid>
+          <LogoWrapper>
+            <Logo modifier='sm' />
+          </LogoWrapper>
+          <GridWrapper>
+            <Grid>
+              <Row>
+                <Navbar>
+                  <NavItem>
+                    <NavLink href='/'>Home</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink href='/about'>About</NavLink>
+                  </NavItem>
+                </Navbar>
+              </Row>
+            </Grid>
+          </GridWrapper>
         </Wrapper>
       </HeaderWrapper>
     )
