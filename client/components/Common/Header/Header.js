@@ -6,7 +6,6 @@ import Navbar from 'client/components/Navigation/Navbar'
 import NavLink from 'client/components/Navigation/NavLink'
 import NavItem from 'client/components/Navigation/NavItem'
 import LazyImage from 'client/components/Gui/LazyImage'
-import logo from 'client/assets/images/logo.png'
 
 const HeaderWrapper = glamorous.header(({ theme: { headerBgColor, headerHeight } }) => ({
   position: 'fixed',
@@ -23,7 +22,7 @@ class Header extends Component {
     return (
       <HeaderWrapper>
         <Wrapper className='header'>
-          <LazyImage src={logo} />
+          <LazyImage src={''} />
           <Grid>
             <Row>
               <Navbar>
