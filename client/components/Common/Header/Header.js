@@ -22,7 +22,7 @@ class Header extends Component {
     return (
       <HeaderWrapper>
         <Wrapper className='header'>
-          <LazyImage src={''} />
+          <LazyImage src={'/static/assets/images/logo.png'} />
           <Grid>
             <Row>
               <Navbar>
