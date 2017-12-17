@@ -109,7 +109,6 @@ class LazyImage extends Component {
   }
 
   handleVisibility = (isVisible) => {
-    console.log('is visible: ', isVisible)
     this.setState({ isVisible })
     isVisible && this.fetchImage()
   }

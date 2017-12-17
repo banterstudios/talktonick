@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
+import FadeSlide from 'client/components/Animations/FadeSlide'
 
 const NavItemWrapper = glamorous.div(({ theme: { navPrimaryBg, navHighlightBg } }) => ({
   position: 'relative',
@@ -15,7 +16,9 @@ class NavItem extends Component {
 
     return (
       <NavItemWrapper>
-        { children }
+        <FadeSlide>
+          { children }
+        </FadeSlide>
       </NavItemWrapper>
     )
   }

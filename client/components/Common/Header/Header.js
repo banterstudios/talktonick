@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import Wrapper from 'client/components/Gui/Wrapper'
 import glamorous from 'glamorous'
-import { Grid, Row } from 'react-bootstrap'
 import Navbar from 'client/components/Navigation/Navbar'
 import NavLink from 'client/components/Navigation/NavLink'
 import NavItem from 'client/components/Navigation/NavItem'
 import Logo from 'client/components/Common/Logo'
+import { MAIN_LINKS } from 'client/consts/links'
 
 const HeaderWrapper = glamorous.header(({ theme: { headerBgColor, headerHeight } }) => ({
   position: 'fixed',
@@ -17,41 +16,32 @@ const HeaderWrapper = glamorous.header(({ theme: { headerBgColor, headerHeight }
   zIndex: '99'
 }))
 
-const LogoWrapper = glamorous.div(() => ({
-  position: 'absolute',
-  top: '50%',
-  left: '10px',
-  transform: 'translateY(-50%)'
-}))
-
-const GridWrapper = glamorous.div(({ theme: { headerHeight } }) => ({
+const FlexWrapper = glamorous.div(({ theme: { headerBgColor, headerHeight } }) => ({
   position: 'relative',
-  padding: `0 60px`
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  padding: '0 20px'
 }))
 
 class Header extends Component {
   render () {
     return (
-      <HeaderWrapper>
-        <Wrapper className='header'>
-          <LogoWrapper>
-            <Logo modifier='sm' />
-          </LogoWrapper>
-          <GridWrapper>
-            <Grid>
-              <Row>
-                <Navbar>
-                  <NavItem>
-                    <NavLink href='/'>Home</NavLink>
+      <HeaderWrapper className='header'>
+        <FlexWrapper>
+          <Logo modifier='sm' />
+            <Navbar>
+              {
+                MAIN_LINKS.map(({ name, link, id }) => (
+                  <NavItem key={id}>
+                    <NavLink href={link}>{name}</NavLink>
                   </NavItem>
-                  <NavItem>
-                    <NavLink href='/about'>About</NavLink>
-                  </NavItem>
-                </Navbar>
-              </Row>
-            </Grid>
-          </GridWrapper>
-        </Wrapper>
+                ))
+              }
+            </Navbar>
+        </FlexWrapper>
       </HeaderWrapper>
     )
   }

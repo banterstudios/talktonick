@@ -4,10 +4,11 @@ import LazyImage from 'client/components/Gui/LazyImage'
 import { logo } from 'client/consts/images'
 import PropTypes from 'prop-types'
 import { checkIfValueIsAllowedOrSetDefault } from 'client/utils/objectUtils'
+import Link from 'client/components/Gui/Link'
 
 const allowedModifiers = ['sm', 'md', 'lg']
 
-const LogoWrapper = glamorous.div(({ modifier, theme: { logoSmWidth, logoSmHeight} }) => ({
+const LogoWrapper = glamorous.div(({ modifier, theme: { logoSmWidth, logoSmHeight } }) => ({
   position: 'relative',
   width: modifier === 'sm' ? logoSmWidth : '20px',
   height: modifier === 'sm' ? logoSmHeight : '20px'
@@ -23,7 +24,9 @@ export default class Logo extends PureComponent {
 
     return (
       <LogoWrapper modifier={checkIfValueIsAllowedOrSetDefault(modifier, allowedModifiers, 'sm')}>
-        <LazyImage src={logo} />
+        <Link href='/'>
+          <LazyImage src={logo} />
+        </Link>
       </LogoWrapper>
     )
   }
