@@ -44,6 +44,15 @@ const controller = (req, res) => {
   res.render('index', templateData)
 }
 
-router.get(['/', '/login'], controller)
+router.get([
+  '/',
+  '/login',
+  '/about',
+  '/features',
+  '/blog',
+  '/contact',
+  '/faq',
+  '/status'
+], controller)
 
 module.exports = router

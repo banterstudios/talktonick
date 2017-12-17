@@ -33,14 +33,14 @@ class Link extends Component {
     linkType: 'route'
   }
 
-  renderNativeLink = ({ children, href, target }) => (
-    <StyledLink href={href} target={target}>
+  renderNativeLink = ({ children, href, target, isActive }) => (
+    <StyledLink href={href} target={target} isActive={isActive}>
       { children }
     </StyledLink>
   )
 
-  renderRouterLink = ({ href, children }) => (
-    <StyledRouterLink to={href}>
+  renderRouterLink = ({ href, children, isActive }) => (
+    <StyledRouterLink to={href} isActive={isActive}>
       { children }
     </StyledRouterLink>
   )
