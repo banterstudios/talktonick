@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import FadeSlide from './FadeSlide'
 
-describe('components/Animation/FadeSlide', () => {
+describe('components/Transitions/FadeSlide', () => {
   describe('@renders', () => {
     it('should render correctly', () => {
       const component = shallow(<FadeSlide />)

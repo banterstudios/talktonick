@@ -5,7 +5,9 @@ import {
   toggleClass,
   removeClass,
   isElemInView,
-  testForPassiveScroll
+  testForPassiveScroll,
+  requestAnimationFrame,
+  cancelAnimationFrame
 } from './domUtils'
 
 export {
@@ -15,5 +17,7 @@ export {
   toggleClass,
   removeClass,
   isElemInView,
-  testForPassiveScroll
+  testForPassiveScroll,
+  requestAnimationFrame,
+  cancelAnimationFrame
 }

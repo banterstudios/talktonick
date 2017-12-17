@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import FadeSlide from 'client/components/Animations/FadeSlide'
+import FadeSlide from 'client/components/Transitions/FadeSlide'
 
 const NavItemWrapper = glamorous.div(({ theme: { navPrimaryBg, navHighlightBg } }) => ({
   position: 'relative',

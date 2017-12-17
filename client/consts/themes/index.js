@@ -22,6 +22,7 @@ module.exports = {
 
   // Header
   headerHeight: '60px',
+  headerHeightPlain: 60,
   headerBgColor: COLORS.darkGunMetal,
 
   // Logo

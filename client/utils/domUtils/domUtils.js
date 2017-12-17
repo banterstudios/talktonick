@@ -104,3 +104,17 @@ export const testForPassiveScroll = () => {
   } catch (e) {}
   return supportsPassiveOption
 }
+
+export const requestAnimationFrame = () => (
+  window.requestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  ((callback) => setTimeout(callback, 1000 / 60))
+)
+
+export const cancelAnimationFrame = () => (
+  window.cancelAnimationFrame ||
+  window.webkitCancelAnimationFrame ||
+  window.mozCancelAnimationFrame ||
+  ((id) => clearTimeout(id))
+)
