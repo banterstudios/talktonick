@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import glamorous, { withTheme } from 'glamorous'
 import { requestAnimationFrame, cancelAnimationFrame } from 'client/utils/domUtils'
 import * as THREE from 'three'
+import { EffectComposer, BloomPass, RenderPass } from 'postprocessing'
 
 const rAnimFrame = requestAnimationFrame()
 const cAnimFrame = cancelAnimationFrame()
@@ -26,12 +27,14 @@ export default class MobilePhone extends PureComponent {
     this.canvasRef = null
     this.animationFrameId = null
 
+    this.composer = null
     this.circle = null
     this.skele = null
     this.camera = null
     this.scene = null
     this.renderer = null
     this.uniforms = null
+    this.clock = null
   }
 
   componentDidMount () {
@@ -58,13 +61,22 @@ export default class MobilePhone extends PureComponent {
     const width = window.innerWidth
     const height = (window.innerHeight - headerHeightPlain)
 
+    this.clock = new THREE.Clock()
+
     this.camera = new THREE.PerspectiveCamera(75, width / height, 1, 10000)
     this.camera.position.z = 300
 
     this.scene = new THREE.Scene()
 
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas: this.canvasRef, alpha: true })
-    this.renderer.setSize(width, height)
+    this.composer = new EffectComposer(new THREE.WebGLRenderer({ antialias: true, canvas: this.canvasRef, alpha: true }))
+    this.composer.addPass(new RenderPass(this.scene, this.camera));
+
+    const pass = new BloomPass()
+    pass.renderToScreen = true
+    this.composer.addPass(pass)
+
+    // this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas: this.canvasRef, alpha: true })
+    // this.renderer.setSize(width, height)
   }
 
   createSkeletonCirlce = () => {
@@ -128,7 +140,7 @@ export default class MobilePhone extends PureComponent {
     this.camera.aspect = (width / height)
     this.camera.updateProjectionMatrix()
 
-    this.renderer.setSize(width, height)
+    this.composer.setSize(width, height)
   }
 
   rotateCircleSkele = () => {
@@ -139,13 +151,12 @@ export default class MobilePhone extends PureComponent {
   }
 
   animate = () => {
-    this.renderer.setClearColor(0x000000, 0)
-
     this.animationFrameId = rAnimFrame(this.animate)
 
     this.rotateCircleSkele()
 
-    this.renderer.render(this.scene, this.camera)
+    this.composer.render(this.clock.getDelta())
+    // this.renderer.render(this.scene, this.camera)
   }
 
   render () {
