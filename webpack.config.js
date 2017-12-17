@@ -19,6 +19,9 @@ const HTMLWebpackHardDiskPlugin = new HtmlWebpackHarddiskPlugin({
 const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
   from: 'client/assets/images/',
   to: 'assets/images/'
+}, {
+  from: 'client/assets/fonts/',
+  to: 'assets/fonts/'
 }])
 
 module.exports = {
@@ -89,7 +92,7 @@ module.exports = {
   },
   plugins: [
     new WriteFilePlugin({
-      test: /\.(jpe?g|png|gif|svg)$/
+      test: /\.(jpe?g|png|gif|svg|json)$/
     }),
     HTMLWebpackPluginConfig,
     HTMLWebpackHardDiskPlugin,

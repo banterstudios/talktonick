@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import glamorous, { withTheme } from 'glamorous'
 import { requestAnimationFrame, cancelAnimationFrame } from 'client/utils/domUtils'
 import * as THREE from 'three'
@@ -19,23 +19,25 @@ const Canvas = glamorous.canvas(() => ({
 }))
 
 @withTheme
-export default class MobilePhone extends Component {
+export default class MobilePhone extends PureComponent {
   constructor (props) {
     super(props)
 
     this.canvasRef = null
     this.animationFrameId = null
 
+    this.circle = null
+    this.skele = null
     this.camera = null
     this.scene = null
     this.renderer = null
-    this.geometry = null
-    this.material = null
-    this.mesh = null
+    this.uniforms = null
   }
 
   componentDidMount () {
     this.init()
+    this.createSkeletonCirlce()
+    this.createLights()
     this.bindEvents()
     this.animate()
   }
@@ -51,24 +53,63 @@ export default class MobilePhone extends Component {
   setRef = (ref) => (this.canvasRef = ref)
 
   init = () => {
-    const { theme: { headerHeightPlain }} = this.props
+    const { theme: { headerHeightPlain } } = this.props
 
     const width = window.innerWidth
     const height = (window.innerHeight - headerHeightPlain)
 
-    this.camera = new THREE.PerspectiveCamera(70, width / height, 0.01, 10)
-    this.camera.position.z = 1
+    this.camera = new THREE.PerspectiveCamera(75, width / height, 1, 10000)
+    this.camera.position.z = 300
 
     this.scene = new THREE.Scene()
 
-    this.geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2)
-    this.material = new THREE.MeshNormalMaterial()
-
-    this.mesh = new THREE.Mesh(this.geometry, this.material)
-    this.scene.add(this.mesh)
-
     this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas: this.canvasRef, alpha: true })
     this.renderer.setSize(width, height)
+  }
+
+  createSkeletonCirlce = () => {
+    this.circle = new THREE.Object3D()
+    this.skele = new THREE.Object3D()
+
+    const geom = new THREE.IcosahedronGeometry(7, 1)
+    const geom2 = new THREE.IcosahedronGeometry(15, 1)
+
+    const mat = new THREE.MeshPhongMaterial({
+      color: 0xf58d1e,
+      shading: THREE.FlatShading
+    })
+
+    const mat2 = new THREE.MeshPhongMaterial({
+      color: 0xf58d1e,
+      wireframe: true,
+      side: THREE.DoubleSide
+    })
+
+    const planet = new THREE.Mesh(geom, mat)
+    planet.scale.x = planet.scale.y = planet.scale.z = 16
+    this.circle.add(planet)
+
+    const planet2 = new THREE.Mesh(geom2, mat2)
+    planet2.scale.x = planet2.scale.y = planet2.scale.z = 10
+    this.skele.add(planet2)
+
+    this.scene.add(this.circle)
+    this.scene.add(this.skele)
+  }
+
+  createLights = () => {
+    const lights = []
+
+    lights[0] = new THREE.DirectionalLight(0xFFFFFF, 1)
+    lights[0].position.set(1, 0, 0)
+    lights[1] = new THREE.DirectionalLight(0xFFFFFF, 1)
+    lights[1].position.set(0.75, 1, 0.5)
+    lights[2] = new THREE.DirectionalLight(0xFFFFFF, 1)
+    lights[2].position.set(-0.75, -1, 0.5)
+
+    this.scene.add(lights[0])
+    this.scene.add(lights[1])
+    this.scene.add(lights[2])
   }
 
   bindEvents = () => {
@@ -80,8 +121,7 @@ export default class MobilePhone extends Component {
   }
 
   handleResize = () => {
-    const { theme: { headerHeightPlain }} = this.props
-    console.log(headerHeightPlain)
+    const { theme: { headerHeightPlain } } = this.props
     const width = window.innerWidth
     const height = (window.innerHeight - headerHeightPlain)
 
@@ -91,13 +131,19 @@ export default class MobilePhone extends Component {
     this.renderer.setSize(width, height)
   }
 
+  rotateCircleSkele = () => {
+    this.circle.rotation.x -= 0.0020
+    this.circle.rotation.y -= 0.0030
+    this.skele.rotation.x -= 0.0010
+    this.skele.rotation.y += 0.0020
+  }
+
   animate = () => {
     this.renderer.setClearColor(0x000000, 0)
 
     this.animationFrameId = rAnimFrame(this.animate)
 
-    this.mesh.rotation.x += 0.01
-    this.mesh.rotation.y += 0.02
+    this.rotateCircleSkele()
 
     this.renderer.render(this.scene, this.camera)
   }

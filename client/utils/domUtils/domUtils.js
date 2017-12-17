@@ -105,16 +105,28 @@ export const testForPassiveScroll = () => {
   return supportsPassiveOption
 }
 
-export const requestAnimationFrame = () => (
-  window.requestAnimationFrame ||
-  window.webkitRequestAnimationFrame ||
-  window.mozRequestAnimationFrame ||
-  ((callback) => setTimeout(callback, 1000 / 60))
-)
+export const requestAnimationFrame = () => {
+  if (typeof window === 'undefined') {
+    return {}
+  }
 
-export const cancelAnimationFrame = () => (
-  window.cancelAnimationFrame ||
-  window.webkitCancelAnimationFrame ||
-  window.mozCancelAnimationFrame ||
-  ((id) => clearTimeout(id))
-)
+  return (
+    window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    ((callback) => setTimeout(callback, 1000 / 60))
+  )
+}
+
+export const cancelAnimationFrame = () => {
+  if (typeof window === 'undefined') {
+    return {}
+  }
+
+  return (
+    window.cancelAnimationFrame ||
+    window.webkitCancelAnimationFrame ||
+    window.mozCancelAnimationFrame ||
+    ((id) => clearTimeout(id))
+  )
+}
