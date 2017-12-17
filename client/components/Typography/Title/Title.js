@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import glamorous from 'glamorous'
+import { checkIfValueIsAllowedOrSetDefault } from 'client/utils/objectUtils'
 
 export const titleFactory = (type) => {
   return glamorous[type](({ theme: { fontSecondary, colorTextPrimary } }) => ({
@@ -19,18 +20,12 @@ class Title extends PureComponent {
     type: PropTypes.string
   }
 
-  static defaultProps = {
-    type: 'h1'
-  }
-
   render () {
     const { children, type, ...rest } = this.props
 
-    if (!allowedTypes.includes(type)) {
-      return null
-    }
+    const titleType = checkIfValueIsAllowedOrSetDefault(type, allowedTypes, 'h1')
 
-    const Title = titleFactory(type)
+    const Title = titleFactory(titleType)
 
     return (
       <Title {...rest} >

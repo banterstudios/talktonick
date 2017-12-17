@@ -6,7 +6,7 @@ exports[`components/Navigation/Navbar @renders should render correctly 1`] = `
     role="navigation"
   >
     <nav
-      className="css-gdldb1"
+      className="css-1b5l5ja"
       role="navigation"
     />
   </glamorous(nav)>

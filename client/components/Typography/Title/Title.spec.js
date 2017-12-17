@@ -24,7 +24,7 @@ describe('components/Typography/Title', () => {
       }
     })
 
-    it('renders null if an incorrect type prop is passed through', () => {
+    it('renders to a default h1 if an incorrect type prop is passed through', () => {
       const component = shallow(<Title type={'sdf'} />)
       expect(toJson(component)).toMatchSnapshot()
       component.unmount()
