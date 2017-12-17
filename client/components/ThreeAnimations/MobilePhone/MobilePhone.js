@@ -69,11 +69,13 @@ export default class MobilePhone extends PureComponent {
     this.scene = new THREE.Scene()
 
     this.composer = new EffectComposer(new THREE.WebGLRenderer({ antialias: true, canvas: this.canvasRef, alpha: true }))
-    this.composer.addPass(new RenderPass(this.scene, this.camera));
+    this.composer.addPass(new RenderPass(this.scene, this.camera))
 
     const pass = new BloomPass()
     pass.renderToScreen = true
     this.composer.addPass(pass)
+
+    this.composer.setSize(width, height)
 
     // this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas: this.canvasRef, alpha: true })
     // this.renderer.setSize(width, height)
