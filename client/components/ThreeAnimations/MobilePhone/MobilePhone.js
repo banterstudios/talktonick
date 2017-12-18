@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import glamorous, { withTheme } from 'glamorous'
 import { requestAnimationFrame, cancelAnimationFrame } from 'client/utils/domUtils'
 import * as THREE from 'three'
-import { EffectComposer, BloomPass, RenderPass } from 'postprocessing'
+import { EffectComposer, BloomPass, FilmPass, RenderPass } from 'postprocessing'
 
 const rAnimFrame = requestAnimationFrame()
 const cAnimFrame = cancelAnimationFrame()
@@ -71,14 +71,27 @@ export default class MobilePhone extends PureComponent {
     this.composer = new EffectComposer(new THREE.WebGLRenderer({ antialias: true, canvas: this.canvasRef, alpha: true }))
     this.composer.addPass(new RenderPass(this.scene, this.camera))
 
-    const pass = new BloomPass()
-    pass.renderToScreen = true
-    this.composer.addPass(pass)
+    // const bloomOpts = {     
+    //   resolutionScale: 1,
+    //   kernelSize: 5,
+    //   intensity: 1.3,
+    //   distinction: 1,
+    //   screenMode: true
+    // }
+
+    // const bloomPass = new BloomPass(bloomOpts)
+    // bloomPass.renderToScreen = true
+    // this.composer.addPass(bloomPass)
+
+    const bloomOpts = {     
+     sepia: true
+    }
+
+    const bloomPass = new FilmPass(bloomOpts)
+    bloomPass.renderToScreen = true
+    this.composer.addPass(bloomPass)
 
     this.composer.setSize(width, height)
-
-    // this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas: this.canvasRef, alpha: true })
-    // this.renderer.setSize(width, height)
   }
 
   createSkeletonCirlce = () => {
@@ -158,7 +171,6 @@ export default class MobilePhone extends PureComponent {
     this.rotateCircleSkele()
 
     this.composer.render(this.clock.getDelta())
-    // this.renderer.render(this.scene, this.camera)
   }
 
   render () {
