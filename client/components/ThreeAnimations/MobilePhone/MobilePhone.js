@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react'
 import glamorous, { withTheme } from 'glamorous'
 import { requestAnimationFrame, cancelAnimationFrame } from 'client/utils/domUtils'
 import * as THREE from 'three'
-import { EffectComposer, BloomPass, FilmPass, RenderPass } from 'postprocessing'
+import { EffectComposer, FilmPass, RenderPass } from 'postprocessing'
+import { spaceDome } from 'client/consts/images'
 
 const rAnimFrame = requestAnimationFrame()
 const cAnimFrame = cancelAnimationFrame()
@@ -41,6 +42,7 @@ export default class MobilePhone extends PureComponent {
     this.init()
     this.createSkeletonCirlce()
     this.createLights()
+    this.createSkyDome()
     this.bindEvents()
     this.animate()
   }
@@ -71,7 +73,7 @@ export default class MobilePhone extends PureComponent {
     this.composer = new EffectComposer(new THREE.WebGLRenderer({ antialias: true, canvas: this.canvasRef, alpha: true }))
     this.composer.addPass(new RenderPass(this.scene, this.camera))
 
-    // const bloomOpts = {     
+    // const bloomOpts = {
     //   resolutionScale: 1,
     //   kernelSize: 5,
     //   intensity: 1.3,
@@ -83,13 +85,25 @@ export default class MobilePhone extends PureComponent {
     // bloomPass.renderToScreen = true
     // this.composer.addPass(bloomPass)
 
-    const bloomOpts = {     
-     sepia: true
+    const filmOpts = {
+      sepia: true,
+      greyscale: false,
+      vignette: false,
+      eskil: false,
+      screenMode: true,
+      noise: true,
+      scanlines: true,
+      noiseIntensity: 0.2,
+      scanlineIntensity: 0.2,
+      greyscaleIntensity: 1.0,
+      sepiaIntensity: 1.0,
+      vignetteOffset: 1.0,
+      vignetteDarkness: 1.0
     }
 
-    const bloomPass = new FilmPass(bloomOpts)
-    bloomPass.renderToScreen = true
-    this.composer.addPass(bloomPass)
+    const filmPass = new FilmPass(filmOpts)
+    filmPass.renderToScreen = true
+    this.composer.addPass(filmPass)
 
     this.composer.setSize(width, height)
   }
@@ -137,6 +151,41 @@ export default class MobilePhone extends PureComponent {
     this.scene.add(lights[0])
     this.scene.add(lights[1])
     this.scene.add(lights[2])
+  }
+
+  createSkyDome = () => {
+    const geometry = new THREE.SphereGeometry(3000, 60, 40)
+    const uniforms = {
+      texture: { type: 't', value: THREE.ImageUtils.loadTexture(spaceDome) }
+    }
+
+    const material = new THREE.ShaderMaterial({
+      uniforms,
+      vertexShader: `
+        varying vec2 vUV;
+
+        void main() {  
+          vUV = uv;
+          vec4 pos = vec4(position, 1.0);
+          gl_Position = projectionMatrix * modelViewMatrix * pos;
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D texture;  
+        varying vec2 vUV;
+        
+        void main() {  
+          vec4 sample = texture2D(texture, vUV);
+          gl_FragColor = vec4(sample.xyz, sample.w);
+        }
+      `
+    })
+
+    const skyBox = new THREE.Mesh(geometry, material)
+    skyBox.scale.set(-1, 1, 1)
+    skyBox.eulerOrder = 'XZY'
+    skyBox.renderDepth = 1000.0
+    this.scene.add(skyBox)
   }
 
   bindEvents = () => {
