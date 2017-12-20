@@ -6,13 +6,13 @@ import NavItem from 'client/components/Navigation/NavItem'
 import Logo from 'client/components/Common/Logo'
 import { MAIN_LINKS } from 'client/consts/links'
 
-const HeaderWrapper = glamorous.header(({ theme: { headerBgColor, headerHeight } }) => ({
+const HeaderWrapper = glamorous.header(({ theme: { headerHeight, bgPrimary } }) => ({
   position: 'fixed',
   top: '0',
   left: '0',
   width: '100%',
   height: headerHeight,
-  background: headerBgColor,
+  boxShadow: `0px 0 5px 0px ${bgPrimary}`,
   zIndex: '99'
 }))
 

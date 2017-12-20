@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react'
 import glamorous, { withTheme } from 'glamorous'
 import { requestAnimationFrame, cancelAnimationFrame } from 'client/utils/domUtils'
 import * as THREE from 'three'
-import { EffectComposer, FilmPass, RenderPass } from 'postprocessing'
-import { spaceDome } from 'client/consts/images'
+import { EffectComposer, BloomPass, RenderPass } from 'postprocessing'
+import { skyDome } from 'client/consts/images'
 
 const rAnimFrame = requestAnimationFrame()
 const cAnimFrame = cancelAnimationFrame()
@@ -19,6 +19,14 @@ const Canvas = glamorous.canvas(() => ({
   width: '100%',
   height: '100vh'
 }))
+
+const promiseThreeLoader = (texture) => {
+  const loader = new THREE.TextureLoader()
+
+  return new Promise((resolve, reject) => {
+    loader.load(texture, resolve, null, reject)
+  })
+}
 
 @withTheme
 export default class MobilePhone extends PureComponent {
@@ -36,15 +44,27 @@ export default class MobilePhone extends PureComponent {
     this.renderer = null
     this.uniforms = null
     this.clock = null
+
+    // Particles -- Should extract all particles logic into it's own class
+    this.particles = []
   }
 
-  componentDidMount () {
+  async componentDidMount () {
+    const [skyDomeTexture] = await this.loadAsyncAssets()
+
     this.init()
     this.createSkeletonCirlce()
     this.createLights()
-    this.createSkyDome()
+    // this.createSkyDome(skyDomeTexture)
+    this.createParticles()
     this.bindEvents()
     this.animate()
+  }
+
+  loadAsyncAssets = () => {
+    return Promise.all([
+      promiseThreeLoader(skyDome)
+    ])
   }
 
   componentWillUnmount () {
@@ -68,42 +88,42 @@ export default class MobilePhone extends PureComponent {
     this.camera = new THREE.PerspectiveCamera(75, width / height, 1, 10000)
     this.camera.position.z = 300
 
-    this.scene = new THREE.Scene()
+    this.scene = window.scene = new THREE.Scene()
 
     this.composer = new EffectComposer(new THREE.WebGLRenderer({ antialias: true, canvas: this.canvasRef, alpha: true }))
     this.composer.addPass(new RenderPass(this.scene, this.camera))
 
-    // const bloomOpts = {
-    //   resolutionScale: 1,
-    //   kernelSize: 5,
-    //   intensity: 1.3,
-    //   distinction: 1,
-    //   screenMode: true
-    // }
-
-    // const bloomPass = new BloomPass(bloomOpts)
-    // bloomPass.renderToScreen = true
-    // this.composer.addPass(bloomPass)
-
-    const filmOpts = {
-      sepia: true,
-      greyscale: false,
-      vignette: false,
-      eskil: false,
-      screenMode: true,
-      noise: true,
-      scanlines: true,
-      noiseIntensity: 0.2,
-      scanlineIntensity: 0.2,
-      greyscaleIntensity: 1.0,
-      sepiaIntensity: 1.0,
-      vignetteOffset: 1.0,
-      vignetteDarkness: 1.0
+    const bloomOpts = {
+      resolutionScale: 1,
+      kernelSize: 5,
+      intensity: 1.3,
+      distinction: 1,
+      screenMode: true
     }
 
-    const filmPass = new FilmPass(filmOpts)
-    filmPass.renderToScreen = true
-    this.composer.addPass(filmPass)
+    const bloomPass = new BloomPass(bloomOpts)
+    bloomPass.renderToScreen = true
+    this.composer.addPass(bloomPass)
+
+    // const filmOpts = {
+    //   sepia: true,
+    //   greyscale: false,
+    //   vignette: false,
+    //   eskil: false,
+    //   screenMode: true,
+    //   noise: true,
+    //   scanlines: true,
+    //   noiseIntensity: 0.2,
+    //   scanlineIntensity: 0.2,
+    //   greyscaleIntensity: 1.0,
+    //   sepiaIntensity: 1.0,
+    //   vignetteOffset: 1.0,
+    //   vignetteDarkness: 1.0
+    // }
+
+    // const filmPass = new FilmPass(filmOpts)
+    // filmPass.renderToScreen = true
+    // this.composer.addPass(filmPass)
 
     this.composer.setSize(width, height)
   }
@@ -117,7 +137,7 @@ export default class MobilePhone extends PureComponent {
 
     const mat = new THREE.MeshPhongMaterial({
       color: 0xf58d1e,
-      shading: THREE.FlatShading
+      flatShading: true
     })
 
     const mat2 = new THREE.MeshPhongMaterial({
@@ -153,39 +173,55 @@ export default class MobilePhone extends PureComponent {
     this.scene.add(lights[2])
   }
 
-  createSkyDome = () => {
-    const geometry = new THREE.SphereGeometry(3000, 60, 40)
-    const uniforms = {
-      texture: { type: 't', value: THREE.ImageUtils.loadTexture(spaceDome) }
+  createSkyDome = (texture) => {
+    texture.minFilter = THREE.LinearFilter
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping
+    texture.repeat.set(100, 100)
+
+    var skyBoxGeometry = new THREE.CubeGeometry(10000, 10000, 10000)
+    var skyBoxMaterial = new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide })
+    var skyBox = new THREE.Mesh(skyBoxGeometry, skyBoxMaterial)
+    this.scene.add(skyBox)
+  }
+
+  createParticles = (texture) => {
+    const geometry = new THREE.Geometry()
+    const materials = []
+
+    const distance = 400
+
+    for (let i = 0; i < 200; i++) {
+      const vertex = new THREE.Vector3()
+      const theta = THREE.Math.randFloatSpread(360)
+      const phi = THREE.Math.randFloatSpread(360)
+
+      vertex.x = (distance * Math.sin(theta) * Math.cos(phi))
+      vertex.y = (distance * Math.sin(theta) * Math.sin(phi))
+      vertex.z = (distance * Math.cos(theta))
+      geometry.vertices.push(vertex)
     }
 
-    const material = new THREE.ShaderMaterial({
-      uniforms,
-      vertexShader: `
-        varying vec2 vUV;
+    const parameters = [[[1, 1, 0.5], 2]]
 
-        void main() {  
-          vUV = uv;
-          vec4 pos = vec4(position, 1.0);
-          gl_Position = projectionMatrix * modelViewMatrix * pos;
-        }
-      `,
-      fragmentShader: `
-        uniform sampler2D texture;  
-        varying vec2 vUV;
-        
-        void main() {  
-          vec4 sample = texture2D(texture, vUV);
-          gl_FragColor = vec4(sample.xyz, sample.w);
-        }
-      `
-    })
+    for (let i = 0; i < parameters.length; i++) {
+      const size = parameters[i][1]
 
-    const skyBox = new THREE.Mesh(geometry, material)
-    skyBox.scale.set(-1, 1, 1)
-    skyBox.eulerOrder = 'XZY'
-    skyBox.renderDepth = 1000.0
-    this.scene.add(skyBox)
+      materials[i] = new THREE.PointCloudMaterial({
+        size,
+        color: 0xFFFFFF,
+        transparent: true,
+        opacity: 1
+      })
+
+      const particle = new THREE.PointCloud(geometry, materials[i])
+
+      particle.rotation.x = Math.random() * 6
+      particle.rotation.y = Math.random() * 6
+      particle.rotation.z = Math.random() * 6
+
+      this.particles.push(particle)
+      this.scene.add(particle)
+    }
   }
 
   bindEvents = () => {
@@ -207,17 +243,27 @@ export default class MobilePhone extends PureComponent {
     this.composer.setSize(width, height)
   }
 
-  rotateCircleSkele = () => {
+  updateCircle = () => {
     this.circle.rotation.x -= 0.0020
     this.circle.rotation.y -= 0.0030
     this.skele.rotation.x -= 0.0010
     this.skele.rotation.y += 0.0020
   }
 
+  updateParticles = () => {
+    const time = (this.clock.getDelta() * 0.02)
+
+    this.particles.forEach((particle, i) => {
+      particle.rotation.x -= time
+      particle.rotation.y -= time
+    })
+  }
+
   animate = () => {
     this.animationFrameId = rAnimFrame(this.animate)
 
-    this.rotateCircleSkele()
+    this.updateCircle()
+    this.updateParticles()
 
     this.composer.render(this.clock.getDelta())
   }

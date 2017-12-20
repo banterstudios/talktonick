@@ -2,3 +2,4 @@
 
 export const logo = '/static/assets/images/logo.png'
 export const skyDome = '/static/assets/images/spacebg.jpg'
+export const shard = '/static/assets/images/shard.png'
