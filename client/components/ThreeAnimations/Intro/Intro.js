@@ -4,6 +4,7 @@ import { requestAnimationFrame, cancelAnimationFrame } from 'client/utils/domUti
 import * as THREE from 'three'
 import { EffectComposer, BloomPass, RenderPass } from 'postprocessing'
 import { skyDome } from 'client/consts/images'
+import CircuitBoard from './CircuitBoard'
 
 const rAnimFrame = requestAnimationFrame()
 const cAnimFrame = cancelAnimationFrame()
@@ -47,16 +48,18 @@ export default class MobilePhone extends PureComponent {
 
     // Particles -- Should extract all particles logic into it's own class
     this.particles = []
+    this.children = []
   }
 
   async componentDidMount () {
     const [skyDomeTexture] = await this.loadAsyncAssets()
 
     this.init()
-    this.createSkeletonCirlce()
+    // this.createSkeletonCirlce()
     this.createLights()
     // this.createSkyDome(skyDomeTexture)
-    this.createParticles()
+    // this.createParticles()
+    this.createChildren()
     this.bindEvents()
     this.animate()
   }
@@ -126,6 +129,12 @@ export default class MobilePhone extends PureComponent {
     // this.composer.addPass(filmPass)
 
     this.composer.setSize(width, height)
+  }
+
+  createChildren = () => {
+    const cB = new CircuitBoard()
+    cB.init(this.scene)
+    this.children.push(cB)
   }
 
   createSkeletonCirlce = () => {
@@ -259,11 +268,16 @@ export default class MobilePhone extends PureComponent {
     })
   }
 
+  updateChildren = () => {
+    this.children.forEach((child) => { child.render() })
+  }
+
   animate = () => {
     this.animationFrameId = rAnimFrame(this.animate)
 
-    this.updateCircle()
-    this.updateParticles()
+    this.updateChildren()
+    // this.updateCircle()
+    // this.updateParticles()
 
     this.composer.render(this.clock.getDelta())
   }
