@@ -132,9 +132,13 @@ export default class MobilePhone extends PureComponent {
   }
 
   createChildren = () => {
-    const cB = new CircuitBoard()
-    cB.init(this.scene)
-    this.children.push(cB)
+    const zIndex = -100
+
+    for (let i = 0; i < 5; i++) {
+      const cB = new CircuitBoard({ zIndex: (i * zIndex)})
+      cB.init(this.scene)
+      this.children.push(cB)
+    }
   }
 
   createSkeletonCirlce = () => {
@@ -269,7 +273,7 @@ export default class MobilePhone extends PureComponent {
   }
 
   updateChildren = () => {
-    this.children.forEach((child) => { child.render() })
+    this.children.forEach((child) => { child.render(this.scene) })
   }
 
   animate = () => {
