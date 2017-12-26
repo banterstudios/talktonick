@@ -17,6 +17,7 @@ export default class CircuitBoard {
   constructor (props) {
     this.props = {
       amount: 5,
+      quantity: 100,
       size: 8,
       color: 0xFF0000,
       spread: 5,
@@ -24,12 +25,13 @@ export default class CircuitBoard {
     }
 
     this.hasStarted = false
-    this.startTime = null
-    this.endTime = null
-    this.particleMaterial = null
-    this.particleGeometry = null
-    this.particle = null
-    this.paths = []
+    this.particles = []
+    // this.startTime = null
+    // this.endTime = null
+    // this.particleMaterial = null
+    // this.particleGeometry = null
+    // this.paths = []
+
   }
 
   init = (scene) => {
@@ -42,53 +44,69 @@ export default class CircuitBoard {
       amount,
       size,
       color,
-      spread
+      spread,
+      quantity
     } = this.props
 
-    this.particleGeometry = new THREE.Geometry()
-    this.particleMaterial = new THREE.PointCloudMaterial({
+    const material = new THREE.PointCloudMaterial({
       size,
       color,
       transparent: true,
       opacity: 0.5
     })
 
-    for (let i = 0; i < amount; i++) {
-      const vertex = new THREE.Vector3()
+    for (let k = 0; k < quantity; k++) {
+      const geometry = new THREE.Geometry()
 
-      vertex.x = 0
-      vertex.y = (i * (size + spread))
-      vertex.z = 0
-      vertex.delay = ((amount - i) * 200)
-      vertex.pos = 0
-      this.particleGeometry.vertices.push(vertex)
-      this.paths.push(createPath(0, (i * (size + spread))))
+      const x = (Math.random() * (1000 - -1000) + -1000)
+      const y = (Math.random() * (1000 - -1000) + -1000)
+      const z = 0
+
+      for (let i = 0; i < amount; i++) {
+        const vertex = new THREE.Vector3()
+
+        vertex.x = x
+        vertex.y = y + (i * (size + spread))
+        vertex.z = z
+        vertex.hasStarted = false
+        vertex.startTime = 0
+        vertex.delay = ((amount - i) * 200)
+        vertex.pos = 0
+        vertex.path = createPath(x, y + (i * (size + spread)))
+        geometry.vertices.push(vertex)
+      }
+
+      this.particles.push(
+        new THREE.PointCloud(geometry, material)
+      )
     }
-
-    this.particle = new THREE.PointCloud(this.particleGeometry, this.particleMaterial)
   }
 
   attachScene = (scene) => {
-    scene.add(this.particle)
+    this.particles.forEach((particle) => {
+      scene.add(particle)
+    })
   }
 
   render = () => {
-    if (!this.hasStarted) {
-      this.hasStarted = true
-      this.startTime = Date.now()
-    }
-
-    this.particleGeometry.vertices.forEach((vertex, i) => {
-      if ((this.startTime + vertex.delay) <= Date.now()) {
-        vertex.pos += 0.01
-        const point = this.paths[i].getPointAt(vertex.pos)
-        if (point) {
-          vertex.x = point.x
-          vertex.y = point.y
+    this.particles.forEach(({ geometry }) => {
+      geometry.vertices.forEach((vertex) => {
+        if (!vertex.hasStarted) {
+          vertex.hasStarted = true
+          vertex.startTime = Date.now()
         }
-      }
-    })
 
-    this.particleGeometry.verticesNeedUpdate = true
+        if ((vertex.startTime + vertex.delay) <= Date.now()) {
+          vertex.pos += 0.01
+          const point = vertex.path.getPointAt(vertex.pos)
+          if (point) {
+            vertex.x = point.x
+            vertex.y = point.y
+          }
+        }
+      })
+
+      geometry.verticesNeedUpdate = true
+    })
   }
 }

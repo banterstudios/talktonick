@@ -52,7 +52,7 @@ export default class MobilePhone extends PureComponent {
   }
 
   async componentDidMount () {
-    const [skyDomeTexture] = await this.loadAsyncAssets()
+    // const [skyDomeTexture] = await this.loadAsyncAssets()
 
     this.init()
     // this.createSkeletonCirlce()
