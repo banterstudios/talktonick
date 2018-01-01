@@ -20,6 +20,12 @@ module.exports = {
   bgPrimary: COLORS.darkGunMetal,
   bgSecondary: COLORS.gunMetal,
 
+  // Input
+  inputHighlight: COLORS.sandyTaupe,
+  inputBg: COLORS.gunMetal,
+  inputTextColor: COLORS.carrotOrange,
+  inputPlaceholderColor: COLORS.wenge,
+
   // Header
   headerHeight: '60px',
   headerHeightPlain: 60,

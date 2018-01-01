@@ -8,28 +8,15 @@ import { Div } from 'glamorous'
 
 const TextInput = (props) => {
   const {
+    input,
     type,
-    name,
-    value,
-    onBlur,
-    onFocus,
-    onInput,
-    onChange,
-    disabled
+    placeholder,
+    tabIndex
   } = props
 
   return (
     <Div position='relative' width='100%'>
-      <Input
-        type={type}
-        name={name}
-        value={value}
-        onBlur={onBlur}
-        onFocus={onFocus}
-        onInput={onInput}
-        onChange={onChange}
-        disabled={disabled}
-      />
+      <Input {...input} type={type} placeholder={placeholder} tabIndex={tabIndex} />
     </Div>
   )
 }

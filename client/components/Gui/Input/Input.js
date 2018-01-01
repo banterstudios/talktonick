@@ -6,16 +6,34 @@ import PropTypes from 'prop-types'
 
 import glamorous from 'glamorous'
 
-const Input = glamorous.input({
-  border: 0,
-  borderRadius: 0,
-  padding: 0,
+const Input = glamorous.input(({ theme: {
+  inputHighlight,
+  inputBg,
+  fontSizeSmSubTitle,
+  fontSecondary,
+  inputTextColor,
+  inputPlaceholderColor
+} }) => ({
+  border: `1px solid transparent`,
+  borderRadius: '2px',
+  padding: '15px',
   appearance: 'none',
-  backgroundColor: 'transparent',
+  backgroundColor: inputBg,
+  minHeight: '50px',
+  transition: 'border .2s ease-out',
+  width: '100%',
+  fontFamily: fontSecondary,
+  fontWeight: 600,
+  fontSize: fontSizeSmSubTitle,
+  color: inputTextColor,
   '&:focus, &:active': {
-    outline: 'none'
+    outline: 'none',
+    borderColor: inputHighlight
+  },
+  '::placeholder': {
+    color: inputPlaceholderColor
   }
-})
+}))
 
 Input.propTypes = {
   type: PropTypes.string,
@@ -25,7 +43,9 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   onInput: PropTypes.func,
   onChange: PropTypes.func,
+  placeholder: PropTypes.string,
   disabled: PropTypes.bool,
+  tabIndex: PropTypes.number,
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
