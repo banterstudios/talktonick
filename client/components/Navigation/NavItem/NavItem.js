@@ -16,7 +16,7 @@ class NavItem extends Component {
 
     return (
       <NavItemWrapper>
-        <FadeSlide>
+        <FadeSlide isActive>
           { children }
         </FadeSlide>
       </NavItemWrapper>

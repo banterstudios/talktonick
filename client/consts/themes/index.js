@@ -26,6 +26,12 @@ module.exports = {
   inputTextColor: COLORS.carrotOrange,
   inputPlaceholderColor: COLORS.wenge,
 
+  // Overlay
+  overlayPrimaryBg: COLORS.black,
+
+  // Modal
+  modalZIndex: 9999,
+
   // Header
   headerHeight: '60px',
   headerHeightPlain: 60,

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import LoginForm from 'client/components/Login/LoginForm'
 
+import Modal from 'client/components/Popups/Modal'
 import Wrapper from 'client/components/Gui/Wrapper'
 
 const mapStateToProps = (state, props) => {
@@ -18,12 +19,18 @@ const mapDispatchToProps = (dispatch, props) => {
 class Login extends Component {
   constructor (props) {
     super(props)
+
+    this.state = { show: true }
   }
+
+  stateChange = () => this.setState(({ show }) => ({ show: !show }))
 
   render () {
     return (
       <Wrapper className='login'>
-        <LoginForm form='login-form' />
+        <Modal isActive={this.state.show} onClick={this.stateChange}>
+          <LoginForm form='login-form' />
+        </Modal>
       </Wrapper>
     )
   }

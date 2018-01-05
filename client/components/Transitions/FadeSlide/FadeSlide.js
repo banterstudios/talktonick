@@ -1,54 +1,20 @@
-
 import React, { PureComponent } from 'react'
-import { css } from 'glamor'
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-
-const enterTimeout = 200
-const leaveTimeout = 200
-
-const enter = css({
-  opacity: 0,
-  transform: `translate3d(20px, 0, 0)`
-})
-
-const enterActive = css({
-  opacity: 1,
-  transform: `translate3d(0, 0, 0)`,
-  transition: `opacity ${enterTimeout}ms ease-out, transform ${enterTimeout}ms ease-out`
-})
-
-const leave = css({
-  opacity: 1,
-  transform: `translate3d(0, 0, 0)`
-})
-
-const leaveActive = css({
-  opacity: 0,
-  transform: `translate3d(20px, 0, 0)`,
-  transition: `opacity ${leaveTimeout}ms ease-out, transform ${leaveTimeout}ms ease-out`
-})
+import { spring, Motion } from 'react-motion'
 
 export default class FadeSlide extends PureComponent {
   render () {
-    const { children } = this.props
+    const { children, isActive } = this.props
 
     return (
-      <CSSTransitionGroup
-        transitionAppear
-        transitionAppearTimeout={enterTimeout}
-        transitionEnterTimeout={enterTimeout}
-        transitionLeaveTimeout={leaveTimeout}
-        transitionName={{
-          appear: enter,
-          appearActive: enterActive,
-          enter,
-          enterActive,
-          leave,
-          leaveActive
-        }}
-      >
-        {children}
-      </CSSTransitionGroup>
+      <Motion
+        style={{ opacity: spring(isActive ? 1 : 0), x: spring(isActive ? 0 : 20) }}
+        defaultStyle={{ opacity: 0, x: 20 }}>
+        {({ opacity, x }) =>
+          <span style={{ opacity, display: opacity ? 'block' : 'none', transform: `translate3d(${x}px, 0, 0)` }}>
+            { children }
+          </span>
+        }
+      </Motion>
     )
   }
 }

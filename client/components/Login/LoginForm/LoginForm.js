@@ -12,9 +12,11 @@ import {
   PASSWORD_PLACEHOLDER
 } from 'client/consts/forms'
 
-const Form = glamorous.form(({ theme: { fontPrimary, colorTextPrimary } }) => ({
+const Form = glamorous.form(({ theme: { fontPrimary, colorTextPrimary, bgSecondary } }) => ({
   position: 'relative',
-  margin: 0
+  margin: 0,
+  padding: '20px',
+  background: bgSecondary
 }))
 
 const LoginForm = (props) => {
