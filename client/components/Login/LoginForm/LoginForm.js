@@ -23,7 +23,7 @@ const Form = glamorous.form(({ theme: { fontPrimary, colorTextPrimary, bgPrimary
 }))
 
 const LoginForm = (props) => {
-  const { handleSubmit } = props
+  const { handleSubmit, submitting } = props
 
   return (
     <Form onSubmit={handleSubmit(handleSubmit)}>
@@ -64,7 +64,7 @@ const LoginForm = (props) => {
         </Clearfix>
      </FormGroup>
       <FormGroup>
-        <SubmitButton>
+        <SubmitButton submitting={submitting}>
           LOGIN
         </SubmitButton>
       </FormGroup>
