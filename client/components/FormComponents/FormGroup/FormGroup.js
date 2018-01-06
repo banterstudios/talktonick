@@ -9,7 +9,7 @@ import glamorous from 'glamorous'
 const FormGroup = glamorous.div(() => ({
   position: 'relative',
   width: '100%',
-  marginBottom: '20px',
+  marginBottom: '15px',
   ':last-child': {
     marginBottom: 0
   }

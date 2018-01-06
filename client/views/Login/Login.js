@@ -23,12 +23,10 @@ class Login extends Component {
     this.state = { show: true }
   }
 
-  stateChange = () => this.setState(({ show }) => ({ show: !show }))
-
   render () {
     return (
       <Wrapper className='login'>
-        <Modal open={this.state.show} allowKeyboard onClick={this.stateChange} size='sm'>
+        <Modal open={this.state.show} allowKeyboard size='sm'>
           <LoginForm form='login-form' />
         </Modal>
       </Wrapper>

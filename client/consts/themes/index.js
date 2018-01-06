@@ -22,6 +22,7 @@ module.exports = {
 
   // Input
   inputHighlight: COLORS.sandyTaupe,
+  inputNormalBorderColor: COLORS.wenge,
   inputBg: COLORS.gunMetal,
   inputTextColor: COLORS.carrotOrange,
   inputPlaceholderColor: COLORS.wenge,

@@ -12,9 +12,10 @@ const Input = glamorous.input(({ theme: {
   fontSizeSmSubTitle,
   fontSecondary,
   inputTextColor,
-  inputPlaceholderColor
+  inputPlaceholderColor,
+  inputNormalBorderColor
 } }) => ({
-  border: `1px solid transparent`,
+  border: `1px solid ${inputNormalBorderColor}`,
   borderRadius: '2px',
   padding: '15px',
   appearance: 'none',
