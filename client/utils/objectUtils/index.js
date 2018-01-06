@@ -5,7 +5,8 @@ import {
   isString,
   allowOnly,
   omit,
-  checkIfValueIsAllowedOrSetDefault
+  checkIfValueIsAllowedOrSetDefault,
+  isFunction
 } from './objectUtils'
 
 export {
@@ -15,5 +16,6 @@ export {
   isString,
   allowOnly,
   omit,
-  checkIfValueIsAllowedOrSetDefault
+  checkIfValueIsAllowedOrSetDefault,
+  isFunction
 }

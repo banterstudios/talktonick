@@ -28,7 +28,7 @@ class Login extends Component {
   render () {
     return (
       <Wrapper className='login'>
-        <Modal isActive={this.state.show} onClick={this.stateChange}>
+        <Modal open={this.state.show} allowKeyboard onClick={this.stateChange} size='sm'>
           <LoginForm form='login-form' />
         </Modal>
       </Wrapper>

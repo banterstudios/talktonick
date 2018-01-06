@@ -1,8 +1,14 @@
+const FUNCTION_PROTO = '[object Function]'
+
 export const isArray = (arr) => Array.isArray(arr)
 
 export const isObject = (obj) => typeof obj === 'object' && (Array.isArray(obj) === false)
 
 export const isString = (value) => typeof value === 'string'
+
+export const isFunction = (value) => {
+  return Object.prototype.toString.call(value) === FUNCTION_PROTO
+}
 
 export const isTruthy = (value) => !!value
 
