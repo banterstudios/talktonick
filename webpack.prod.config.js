@@ -3,6 +3,7 @@ const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: path.join(__dirname, '/server/views/index.handlebars'),
@@ -22,6 +23,11 @@ const cleanWebpackBuild = new CleanWebpackPlugin(['build'], {
   dry: false,
   exclude: ['.gitkeep']
 })
+
+const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
+  from: 'client/assets/images/',
+  to: 'assets/images/'
+}])
 
 module.exports = {
   entry: [
@@ -90,6 +96,8 @@ module.exports = {
   },
   plugins: [
     cleanWebpackBuild,
+    HTMLWebpackPluginConfig,
+    CopyWebpackPluginConfig,
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
@@ -117,8 +125,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       'Promise': 'es6-promise',
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    }),
-    HTMLWebpackPluginConfig
+    })
   ],
 
   devtool: 'cheap-module-source-map'
