@@ -8,10 +8,10 @@ import { getImage } from 'client/utils/imageUtils'
 
 import glamorous from 'glamorous'
 
+import Fade from 'client/components/Transitions/Fade'
+
 const ImageContainer = glamorous.div(({ loaded }) => ({
-  position: 'relative',
-  opacity: loaded ? 1 : 0,
-  transition: 'opacity .4s ease-out'
+  position: 'relative'
 }))
 
 const Image = glamorous.img({
@@ -130,20 +130,22 @@ class LazyImage extends Component {
     } = this.state
 
     return (
-      <ImageContainer loaded={ loaded }>
-        {
-          useBgImage
-          ? (
-            <BgImage bgImage={src} bgPos={bgPos} bgSize={bgSize} bgRepeat={bgRepeat} {...rest}>
-              { children }
-            </BgImage>
-          )
-          : (
-            <Image src={src} alt={alt} {...rest}>
-              { children }
-            </Image>
-          )
-        }
+      <ImageContainer>
+        <Fade isActive={loaded}>
+          {
+            useBgImage
+            ? (
+              <BgImage bgImage={src} bgPos={bgPos} bgSize={bgSize} bgRepeat={bgRepeat} {...rest}>
+                { children }
+              </BgImage>
+            )
+            : (
+              <Image src={src} alt={alt} {...rest}>
+                { children }
+              </Image>
+            )
+          }
+        </Fade>
       </ImageContainer>
     )
   }
