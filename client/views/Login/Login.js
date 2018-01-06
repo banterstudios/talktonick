@@ -19,14 +19,12 @@ const mapDispatchToProps = (dispatch, props) => {
 class Login extends Component {
   constructor (props) {
     super(props)
-
-    this.state = { show: true }
   }
 
   render () {
     return (
       <Wrapper className='login'>
-        <Modal open={this.state.show} allowKeyboard size='sm'>
+        <Modal open size='sm'>
           <LoginForm form='login-form' />
         </Modal>
       </Wrapper>

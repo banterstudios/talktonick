@@ -47,14 +47,14 @@ const LoginForm = (props) => {
       </FormGroup>
       <FormGroup modifier='lg'>
         <Clearfix>
-          <Col md={6}>
+          <Col xs={6}>
             <Div>
               <Link href='/register' modifier='sm'>
                 Sign up
               </Link>
             </Div>
           </Col>
-          <Col md={6}>
+          <Col xs={6}>
             <Div textAlign='right'>
               <Link href='/forgot' modifier='sm'>
                 Forgot
