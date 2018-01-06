@@ -13,10 +13,11 @@ const Input = glamorous.input(({ theme: {
   fontSecondary,
   inputTextColor,
   inputPlaceholderColor,
-  inputNormalBorderColor
+  inputNormalBorderColor,
+  formBorderRadius
 } }) => ({
   border: `1px solid ${inputNormalBorderColor}`,
-  borderRadius: '2px',
+  borderRadius: formBorderRadius,
   padding: '15px',
   appearance: 'none',
   backgroundColor: inputBg,

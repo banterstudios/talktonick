@@ -27,6 +27,12 @@ module.exports = {
   inputTextColor: COLORS.carrotOrange,
   inputPlaceholderColor: COLORS.wenge,
 
+  // Form components
+  formBorderRadius: '2px',
+
+  // Button
+  primaryButtonBg: COLORS.carrotOrange,
+
   // Overlay
   overlayPrimaryBg: COLORS.black,
 
