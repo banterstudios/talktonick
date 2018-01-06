@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
 
 import { reducer as formReducer } from 'redux-form'
+import loginReducer from './login'
 
 const rootReducer = combineReducers({
-  test: (state = {}) => state,
+  login: loginReducer,
   form: formReducer
 })
 
