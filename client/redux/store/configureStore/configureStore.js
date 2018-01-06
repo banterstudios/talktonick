@@ -6,7 +6,7 @@ import {
 
 import thunkMiddleware from 'redux-thunk'
 
-import reducers from 'client/reducers'
+import { reducers } from 'client/redux/modules'
 
 import immutableStateInvariant from 'redux-immutable-state-invariant'
 

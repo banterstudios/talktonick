@@ -12,7 +12,7 @@ import App from 'client/components/App'
 
 import express from 'express'
 
-import { configureStore } from 'client/store'
+import { configureStore } from 'client/redux/store'
 
 import serializeJS from 'serialize-javascript'
 
