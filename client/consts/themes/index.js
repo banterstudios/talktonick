@@ -59,6 +59,9 @@ module.exports = {
   fontSizeMdText: '12px',
   fontSizeSmText: '10px',
 
+  // Loader
+  loaderPrimaryBg: COLORS.white,
+
   // Breakpoints
   ...BREAKPOINTS
 }

@@ -3,10 +3,10 @@ import glamorous from 'glamorous'
 import PropTypes from 'prop-types'
 import { Link as routerLink } from 'react-router-dom'
 
-const getStyles = ({ theme: { ctaPrimary, ctaHighlight, fontSizeText, fontPrimary }, isActive }) => ({
+const getStyles = ({ theme: { ctaPrimary, ctaHighlight, fontSizeText, fontPrimary, fontSizeMdText }, isActive, modifier }) => ({
   position: 'relative',
   color: (isActive ? ctaHighlight : ctaPrimary),
-  fontSize: fontSizeText,
+  fontSize: (modifier === 'sm') ? fontSizeMdText : fontSizeText,
   fontFamily: fontPrimary,
   textDecoration: 'none',
   transition: 'color .4s ease-out',
@@ -33,14 +33,14 @@ class Link extends Component {
     linkType: 'route'
   }
 
-  renderNativeLink = ({ children, href, target, isActive }) => (
-    <StyledLink href={href} target={target} isActive={isActive}>
+  renderNativeLink = ({ children, href, target, isActive, modifier }) => (
+    <StyledLink href={href} target={target} isActive={isActive} modifier={modifier}>
       { children }
     </StyledLink>
   )
 
-  renderRouterLink = ({ href, children, isActive }) => (
-    <StyledRouterLink to={href} isActive={isActive}>
+  renderRouterLink = ({ href, children, isActive, modifier }) => (
+    <StyledRouterLink to={href} isActive={isActive} modifier={modifier}>
       { children }
     </StyledRouterLink>
   )

@@ -6,10 +6,10 @@ import PropTypes from 'prop-types'
 
 import glamorous from 'glamorous'
 
-const FormGroup = glamorous.div(() => ({
+const FormGroup = glamorous.div(({ modifier }) => ({
   position: 'relative',
   width: '100%',
-  marginBottom: '15px',
+  marginBottom: (modifier === 'sm') ? '5px' : (modifier === 'lg') ? '30px' : '15px',
   ':last-child': {
     marginBottom: 0
   }

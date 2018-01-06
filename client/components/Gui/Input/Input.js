@@ -9,14 +9,14 @@ import glamorous from 'glamorous'
 const Input = glamorous.input(({ theme: {
   inputHighlight,
   inputBg,
-  fontSizeSmSubTitle,
+  fontSizeText,
   fontSecondary,
   inputTextColor,
   inputPlaceholderColor,
   inputNormalBorderColor,
   formBorderRadius
 } }) => ({
-  border: `1px solid ${inputNormalBorderColor}`,
+  border: `1px solid transparent`,
   borderRadius: formBorderRadius,
   padding: '15px',
   appearance: 'none',
@@ -26,7 +26,7 @@ const Input = glamorous.input(({ theme: {
   width: '100%',
   fontFamily: fontSecondary,
   fontWeight: 600,
-  fontSize: fontSizeSmSubTitle,
+  fontSize: fontSizeText,
   color: inputTextColor,
   '&:focus, &:active': {
     outline: 'none',
