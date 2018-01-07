@@ -12,9 +12,9 @@ import exphbs from 'express-handlebars'
 
 import staticRoutes from 'server/routes'
 
-const port = process.env.PORT || 3000
+import isDev from 'isdev'
 
-const isDev = process.env.NODE_ENV === 'development'
+const port = process.env.PORT || 3000
 
 const app = express()
 
@@ -31,16 +31,25 @@ if (isDev) {
   const compiler = webpack(webpackConfig)
 
   app.use(webpackDevMiddleware(compiler, {
+    hot: true,
+    filename: webpackConfig.output.filename,
     noInfo: true,
+    stats: {
+      colors: true
+    },
+    historyApiFallback: true,
     publicPath: webpackConfig.output.publicPath
   }))
 
-  app.use(webpackHotMiddleware(compiler))
+  app.use(webpackHotMiddleware(compiler, {
+    log: console.log,
+    heartbeat: 10 * 1000
+  }))
 }
 
 const handlebarsConfig = {
-  defaultLayout: 'main',
-  layoutsDir: path.join(__dirname, './views/layouts')
+  defaultLayout: 'index',
+  layoutsDir: path.join(__dirname, '../build/views')
 }
 
 app.engine('handlebars',
@@ -52,7 +61,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // view engine setup
-app.set('views', path.join(__dirname, './views'))
+app.set('views', path.join(__dirname, '../build/views'))
 
 app.set('view engine', 'handlebars')
 
