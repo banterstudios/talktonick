@@ -4,7 +4,8 @@
   "description": "Real time messaging system",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development PORT=8080 node ./server",
+    "start": "cross-env NODE_ENV=production node ./server",
+    "dev": "cross-env NODE_ENV=development PORT=8080 node ./server",
     "production": "cross-env NODE_ENV=production webpack --progress --color --config webpack.prod.config.js",
     "test:jest:watch": "jest --watch",
     "test:jest": "jest"
