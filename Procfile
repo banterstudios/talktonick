@@ -1,1 +1,1 @@
-web: cross-env NODE_ENV=development PORT=8080 node ./server
+web: NODE_ENV=production webpack --progress --color --config webpack.prod.config.js && node ./server
