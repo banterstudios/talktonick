@@ -19,7 +19,7 @@ const lineThreeAnim = glamor.css.keyframes({
 
 const Loader = glamorous.div(() => ({
   position: 'relative',
-  left: 'calc(50% - 13px)',
+  display: 'inline-block',
   width: '26px',
   height: '26px',
   borderRadius: '50%',
