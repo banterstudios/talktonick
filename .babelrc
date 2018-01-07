@@ -14,6 +14,11 @@
     "react-hot-loader/babel"
   ],
   "env": {
+    "production": {
+      "plugins": [
+        [ "babel-plugin-webpack-alias", { "config": "./webpack.config.js" } ]
+      ]
+    },
     "development": {
       "plugins": [
         [ "babel-plugin-webpack-alias", { "config": "./webpack.config.js" } ]
