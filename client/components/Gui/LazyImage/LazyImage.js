@@ -10,7 +10,7 @@ import glamorous from 'glamorous'
 
 import Fade from 'client/components/Transitions/Fade'
 
-const ImageContainer = glamorous.div(({ loaded }) => ({
+const ImageContainer = glamorous.div(() => ({
   position: 'relative'
 }))
 
@@ -20,7 +20,7 @@ const Image = glamorous.img({
   verticalAlign: 'top'
 })
 
-const BgImage = glamorous.div(({ loaded, bgSize, bgPos, bgRepeat, bgImage }) => ({
+const BgImage = glamorous.div(({ bgSize, bgPos, bgRepeat, bgImage }) => ({
   position: 'relative',
   width: '100%',
   backgroundPosition: bgPos,
