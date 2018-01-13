@@ -25,12 +25,12 @@ class Title extends PureComponent {
 
     const titleType = checkIfValueIsAllowedOrSetDefault(type, allowedTypes, 'h1')
 
-    const Title = titleFactory(titleType)
+    const Heading = titleFactory(titleType)
 
     return (
-      <Title {...rest} >
+      <Heading {...rest}>
         { children }
-      </Title>
+      </Heading>
     )
   }
 }

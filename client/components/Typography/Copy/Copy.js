@@ -15,10 +15,10 @@ class Copy extends PureComponent {
   }
 
   render () {
-    const { children } = this.props
+    const { children, ...rest } = this.props
 
     return (
-      <Paragraph>
+      <Paragraph {...rest}>
         {children}
       </Paragraph>
     )

@@ -19,6 +19,14 @@ const Wrapper = glamorous.div(({
   background: primaryCardBg
 }))
 
+const VerticalAlign = glamorous.div(() => ({
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'center',
+  height: '100%',
+  flexDirection: 'column'
+}))
+
 export default class ContactCard extends Component {
   static propTypes = {
   }
@@ -27,18 +35,20 @@ export default class ContactCard extends Component {
     return (
       <Wrapper>
         <Row>
-          <Col xs={3}>
+          <Col style={{ flexShrink: '1' }}>
             <Avatar />
           </Col>
-          <Col xs={6}>
-            <Title type={'h4'}>
-              Name
-            </Title>
-            <Copy>
-              Snippet.
-            </Copy>
+          <Col xs={10}>
+            <VerticalAlign>
+              <Title type={'h4'} style={{ marginBottom: '5px' }}>
+                Name
+              </Title>
+              <Copy style={{ fontSize: '14px'}}>
+                Snippet.
+              </Copy>
+            </VerticalAlign>
           </Col>
-          <Col xs={3}>
+          <Col>
             <Avatar />
           </Col>
         </Row>
