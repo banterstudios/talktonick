@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import LoginForm from 'client/components/Login/LoginForm'
+import LoginFormContainer from 'client/redux/containers/Login/LoginForm'
 
 import Modal from 'client/components/Popups/Modal'
 import Wrapper from 'client/components/Gui/Wrapper'
@@ -25,7 +25,7 @@ class Login extends Component {
     return (
       <Wrapper className='login'>
         <Modal open size='sm'>
-          <LoginForm form='login-form' />
+          <LoginFormContainer form='login-form' />
         </Modal>
       </Wrapper>
     )

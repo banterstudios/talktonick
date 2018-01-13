@@ -6,9 +6,9 @@ import glamorous from 'glamorous'
 
 import { isFunction, omit } from 'client/utils/objectUtils'
 
-import Copy from 'client/components/Typography/Copy'
+// import Copy from 'client/components/Typography/Copy'
 
-const StyledButton = glamorous.button(({ theme: { formBorderRadius, primaryButtonBg, fontSizeText }, disabled }) => ({
+const StyledButton = glamorous.button(({ theme: { formBorderRadius, primaryButtonBg, fontSizeText, fontSecondary, colorTextPrimary }, disabled }) => ({
   position: 'relative',
   width: '100%',
   background: primaryButtonBg,
@@ -16,6 +16,8 @@ const StyledButton = glamorous.button(({ theme: { formBorderRadius, primaryButto
   border: 'none',
   fontSize: fontSizeText,
   borderRadius: formBorderRadius,
+  color: colorTextPrimary,
+  fontFamily: fontSecondary,
   minHeight: '50px',
   transition: 'opacity .4s ease-out',
   '&:hover, &:visited, &:active, &:focus': {
@@ -55,9 +57,7 @@ export default class Button extends Component {
 
     return (
       <StyledButton onClick={this.handleClick} {...buttonProps}>
-        <Copy>
-          {children}
-        </Copy>
+        {children}
       </StyledButton>
     )
   }

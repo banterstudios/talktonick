@@ -8,11 +8,12 @@ import TextInput from 'client/components/FormComponents/TextInput'
 import SubmitButton from 'client/components/FormComponents/SubmitButton'
 import FormGroup from 'client/components/FormComponents/FormGroup'
 import Link from 'client/components/Gui/Link'
-import { Col, Clearfix } from 'react-bootstrap'
+import { Col, Row } from 'react-grid-system'
 
 import {
   EMAIL_PLACEHOLDER,
-  PASSWORD_PLACEHOLDER
+  PASSWORD_PLACEHOLDER,
+  LOGIN_SYNC_VALIDATION as validate
 } from 'client/consts/forms'
 
 const Form = glamorous.form(({ theme: { fontPrimary, colorTextPrimary, bgPrimary } }) => ({
@@ -26,7 +27,7 @@ const LoginForm = (props) => {
   const { handleSubmit, submitting } = props
 
   return (
-    <Form onSubmit={handleSubmit(handleSubmit)}>
+    <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Field
           tabIndex={1}
@@ -46,7 +47,7 @@ const LoginForm = (props) => {
         />
       </FormGroup>
       <FormGroup modifier='lg'>
-        <Clearfix>
+        <Row>
           <Col xs={6}>
             <Div>
               <Link href='/register' modifier='sm'>
@@ -61,7 +62,7 @@ const LoginForm = (props) => {
               </Link>
             </Div>
           </Col>
-        </Clearfix>
+        </Row>
      </FormGroup>
       <FormGroup>
         <SubmitButton submitting={submitting}>
@@ -73,5 +74,6 @@ const LoginForm = (props) => {
 }
 
 export default reduxForm({
-  form: 'login'
+  form: 'login',
+  validate
 })(LoginForm)

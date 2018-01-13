@@ -1,3 +1,7 @@
-import login from './login'
+import login, { submitLoginForm } from './login'
+
+export {
+  submitLoginForm
+}
 
 export default login

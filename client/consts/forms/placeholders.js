@@ -1,2 +1,2 @@
-export const EMAIL_PLACEHOLDER = 'Email'
-export const PASSWORD_PLACEHOLDER = 'Password'
+export const EMAIL = 'Email'
+export const PASSWORD = 'Password'
