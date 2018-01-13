@@ -18,6 +18,7 @@ import Contact from 'client/views/Contact'
 import Faq from 'client/views/Faq'
 import Features from 'client/views/Features'
 import Status from 'client/views/Status'
+import Chat from 'client/views/Chat'
 
 import PageNotFound from 'client/views/PageNotFound'
 
@@ -34,6 +35,7 @@ const App = (props) => {
           <Route exact path='/faq' component={Faq} />
           <Route exact path='/features' component={Features} />
           <Route exact path='/status' component={Status} />
+          <Route exact path='/chat' component={Chat} />
           <Route component={PageNotFound} />
         </Switch>
       </MainLayout>

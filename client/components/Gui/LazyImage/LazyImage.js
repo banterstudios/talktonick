@@ -26,7 +26,7 @@ const BgImage = glamorous.div(({ bgSize, bgPos, bgRepeat, bgImage }) => ({
   backgroundPosition: bgPos,
   backgroundSize: bgSize,
   backgroundRepeat: bgRepeat,
-  backgroundImage: bgImage
+  backgroundImage: `url('${bgImage}')`
 }))
 
 class LazyImage extends Component {

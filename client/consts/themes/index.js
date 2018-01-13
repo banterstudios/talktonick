@@ -51,6 +51,10 @@ module.exports = {
   logoSmWidth: '40px',
   logoSmHeight: '40px',
 
+  // Cards
+  primaryCardBorderColor: COLORS.sandyTaupe,
+  primaryCardBg: COLORS.darkGunMetal,
+
   // font size
   fontSizeTitle: '45px',
   fontSizeMdTitle: '28px',

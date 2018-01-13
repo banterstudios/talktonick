@@ -6,14 +6,15 @@ import NavItem from 'client/components/Navigation/NavItem'
 import Logo from 'client/components/Common/Logo'
 import { MAIN_LINKS } from 'client/consts/links'
 
-const HeaderWrapper = glamorous.header(({ theme: { headerHeight, bgPrimary } }) => ({
+const HeaderWrapper = glamorous.header(({ theme: { headerHeight, bgPrimary, bgSecondary } }) => ({
   position: 'fixed',
   top: '0',
   left: '0',
   width: '100%',
   height: headerHeight,
   boxShadow: `0px 0 5px 0px ${bgPrimary}`,
-  zIndex: '99'
+  zIndex: '99',
+  background: bgSecondary
 }))
 
 const FlexWrapper = glamorous.div(({ theme: { headerBgColor, headerHeight } }) => ({
