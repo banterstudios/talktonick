@@ -20,6 +20,9 @@ module.exports = {
   bgPrimary: COLORS.darkGunMetal,
   bgSecondary: COLORS.gunMetal,
 
+  // Messages
+  messagePrimaryColor: COLORS.sandyTaupe,
+
   // Input
   inputHighlight: COLORS.sandyTaupe,
   inputNormalBorderColor: COLORS.wenge,
