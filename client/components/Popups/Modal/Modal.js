@@ -84,7 +84,7 @@ export default class Modal extends Component {
         <Fade isActive={open}>
           <Overlay onClick={onClick} />
           <ContentWrapper size={size}>
-            <FadeSlide isActive={open} direction='up'>
+            <FadeSlide isActive={open} direction='up' distance={80}>
               {children}
             </FadeSlide>
           </ContentWrapper>
