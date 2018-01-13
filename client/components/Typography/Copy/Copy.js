@@ -2,11 +2,13 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import glamorous from 'glamorous'
 
-const Paragraph = glamorous.p(({ theme: { fontSecondary, colorTextPrimary } }) => ({
+const Paragraph = glamorous.p(({ theme: { fontSecondary, colorTextPrimary, fontSizeText } }) => ({
   position: 'relative',
   fontFamily: fontSecondary,
   color: colorTextPrimary,
-  margin: 0
+  margin: 0,
+  fontSize: fontSizeText,
+  wordBreak: 'break-word'
 }))
 
 class Copy extends PureComponent {

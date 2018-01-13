@@ -3,7 +3,6 @@ import glamorous from 'glamorous'
 import Avatar from 'client/components/Contacts/Avatar'
 import Title from 'client/components/Typography/Title'
 import Copy from 'client/components/Typography/Copy'
-import { Row, Col } from 'react-grid-system'
 
 const Wrapper = glamorous.div(({
   theme: {
@@ -27,6 +26,27 @@ const VerticalAlign = glamorous.div(() => ({
   flexDirection: 'column'
 }))
 
+const Container = glamorous.div(() => ({
+  position: 'relative',
+  display: 'flex'
+}))
+
+const Col = glamorous.div(() => ({
+  position: 'relative',
+  width: '60px',
+  flexShrink: '0'
+}))
+
+const ColFluid = glamorous.div(() => ({
+  position: 'relative',
+  width: '100%',
+  padding: '0 20px'
+}))
+
+const Text = glamorous(Copy)(() => ({
+  opacity: 0.8
+}))
+
 export default class ContactCard extends Component {
   static propTypes = {
   }
@@ -34,24 +54,24 @@ export default class ContactCard extends Component {
   render () {
     return (
       <Wrapper>
-        <Row>
-          <Col style={{ flexShrink: '1' }}>
+        <Container>
+          <Col>
             <Avatar />
           </Col>
-          <Col xs={10}>
+          <ColFluid>
             <VerticalAlign>
               <Title type={'h4'} style={{ marginBottom: '5px' }}>
                 Name
               </Title>
-              <Copy style={{ fontSize: '14px'}}>
+              <Text>
                 Snippet.
-              </Copy>
+              </Text>
             </VerticalAlign>
-          </Col>
+          </ColFluid>
           <Col>
-            <Avatar />
+
           </Col>
-        </Row>
+        </Container>
       </Wrapper>
     )
   }
