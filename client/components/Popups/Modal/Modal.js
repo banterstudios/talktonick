@@ -80,16 +80,16 @@ export default class Modal extends Component {
     const { open, children, onClick, size } = this.props
 
     return (
-      <Fade isActive={open}>
-        <Frame>
+      <Frame>
+        <Fade isActive={open}>
           <Overlay onClick={onClick} />
-            <ContentWrapper size={size}>
-              <FadeSlide isActive={open} direction='up'>
-                {children}
-              </FadeSlide>
-            </ContentWrapper>
-        </Frame>
-      </Fade>
+          <ContentWrapper size={size}>
+            <FadeSlide isActive={open} direction='up'>
+              {children}
+            </FadeSlide>
+          </ContentWrapper>
+        </Fade>
+      </Frame>
     )
   }
 }
