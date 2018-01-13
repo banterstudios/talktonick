@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Wrapper from 'client/components/Gui/Wrapper'
 
-class PageNotFound extends Component {
+export default class PageNotFound extends Component {
   constructor (props) {
     super(props)
   }
@@ -10,10 +10,8 @@ class PageNotFound extends Component {
   render () {
     return (
       <Wrapper className='page-not-found'>
-        PageNotFound
+        Page not found... Try turning it off and on again
       </Wrapper>
     )
   }
 }
-
-export default PageNotFound

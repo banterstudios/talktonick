@@ -52,7 +52,8 @@ router.get([
   '/blog',
   '/contact',
   '/faq',
-  '/status'
+  '/status',
+  '/chat'
 ], controller)
 
 module.exports = router

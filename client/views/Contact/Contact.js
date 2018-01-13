@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Wrapper from 'client/components/Gui/Wrapper'
 
 @connect(null, null)
-class Contact extends Component {
+export default class Contact extends Component {
   constructor (props) {
     super(props)
   }
@@ -16,5 +16,3 @@ class Contact extends Component {
     )
   }
 }
-
-export default Contact
