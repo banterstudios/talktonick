@@ -5,8 +5,6 @@ import {
   Switch
 } from 'react-router-dom'
 
-import AuthRoute from 'client/components/Navigation/AuthRoute'
-
 import { ThemeProvider } from 'glamorous'
 import themeVariables from 'client/consts/themes'
 

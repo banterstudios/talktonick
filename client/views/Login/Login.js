@@ -10,7 +10,7 @@ import Modal from 'client/components/Popups/Modal'
 import Wrapper from 'client/components/Gui/Wrapper'
 import { Redirect } from 'react-router-dom'
 
-const mapStateToProps = ({ login: { isLoggedIn }}) => ({
+const mapStateToProps = ({ login: { isLoggedIn } }) => ({
   isLoggedIn
 })
 

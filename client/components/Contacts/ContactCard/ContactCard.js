@@ -69,7 +69,11 @@ export default class ContactCard extends Component {
             </VerticalAlign>
           </ColFluid>
           <Col>
-
+            <VerticalAlign>
+              <Text>
+                00:30
+              </Text>
+            </VerticalAlign>
           </Col>
         </Container>
       </Wrapper>
