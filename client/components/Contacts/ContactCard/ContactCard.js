@@ -3,6 +3,7 @@ import glamorous from 'glamorous'
 import Avatar from 'client/components/Contacts/Avatar'
 import Title from 'client/components/Typography/Title'
 import Copy from 'client/components/Typography/Copy'
+import PropTypes from 'prop-types'
 
 const Wrapper = glamorous.div(({
   theme: {
@@ -49,9 +50,14 @@ const Text = glamorous(Copy)(() => ({
 
 export default class ContactCard extends Component {
   static propTypes = {
+    name: PropTypes.string,
+    message: PropTypes.string,
+    timeStamp: PropTypes.string
   }
 
   render () {
+    const { name, message, timeStamp } = this.props
+
     return (
       <Wrapper>
         <Container>
@@ -61,17 +67,17 @@ export default class ContactCard extends Component {
           <ColFluid>
             <VerticalAlign>
               <Title type={'h4'} style={{ marginBottom: '5px' }}>
-                Name
+                {name}
               </Title>
               <Text>
-                Snippet.
+                {message}
               </Text>
             </VerticalAlign>
           </ColFluid>
           <Col>
             <VerticalAlign>
               <Text>
-                00:30
+                {timeStamp}
               </Text>
             </VerticalAlign>
           </Col>

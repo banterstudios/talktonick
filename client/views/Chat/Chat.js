@@ -3,17 +3,24 @@ import { connect } from 'react-redux'
 import Wrapper from 'client/components/Gui/Wrapper'
 import ContactCard from 'client/components/Contacts/ContactCard'
 
-@connect(null, null)
+const mapStateToProps = () => {
+  return {
+    messages: Array(100).fill({ name: 'Nick', message: 'This is a message!', timeStamp: Date.now().toString() })
+  }
+}
+@connect(mapStateToProps, null)
 export default class Chat extends Component {
   constructor (props) {
     super(props)
   }
 
   render () {
+    const { messages } = this.props
+
     return (
       <Wrapper className='chat'>
         {
-          [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5].map((num, index) => <ContactCard key={index} />)
+          messages.map((message, index) => <ContactCard key={index} { ...message } />)
         }
       </Wrapper>
     )
