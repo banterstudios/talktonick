@@ -1,7 +1,9 @@
-import login, { submitLoginForm } from './login'
+import login, { submitLoginForm, logIn, logOut } from './login'
 
 export {
-  submitLoginForm
+  submitLoginForm,
+  logIn,
+  logOut
 }
 
 export default login

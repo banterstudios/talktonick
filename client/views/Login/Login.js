@@ -1,27 +1,37 @@
 import React, { Component } from 'react'
 
+import PropTypes from 'prop-types'
+
 import { connect } from 'react-redux'
 
 import LoginFormContainer from 'client/redux/containers/Login/LoginForm'
 
 import Modal from 'client/components/Popups/Modal'
 import Wrapper from 'client/components/Gui/Wrapper'
+import { Redirect } from 'react-router-dom'
 
-const mapStateToProps = (state, props) => {
-  return {}
-}
+const mapStateToProps = ({ login: { isLoggedIn }}) => ({
+  isLoggedIn
+})
 
-const mapDispatchToProps = (dispatch, props) => {
-  return {}
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps, null)
 export default class Login extends Component {
-  constructor (props) {
-    super(props)
+  static propTypes = {
+    isLoggedIn: PropTypes.bool,
+    redirect: PropTypes.string
+  }
+
+  static defaultProps = {
+    redirect: '/chat'
   }
 
   render () {
+    const { isLoggedIn, redirect } = this.props
+
+    if (isLoggedIn) {
+      return <Redirect to={{ pathname: redirect }} />
+    }
+
     return (
       <Wrapper className='login'>
         <Modal open size='sm'>

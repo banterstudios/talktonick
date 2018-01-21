@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import FadeSlide from 'client/components/Transitions/FadeSlide'
 import glamorous from 'glamorous'
 
-const Wrapper = glamorous.div(({ theme: { messagePrimaryColor, fontSizeSmText, fontSecondary } }) => ({
+const Wrapper = glamorous.div(({ theme: { messagePrimaryColor, fontSizeText, fontSecondary } }) => ({
   position: 'relative',
-  padding: '5px 0',
+  padding: '10px 0',
   fontFamily: fontSecondary,
   color: messagePrimaryColor,
-  fontSize: fontSizeSmText
+  fontSize: fontSizeText
 }))
 
 export default class FormMessage extends PureComponent {

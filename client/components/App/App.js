@@ -5,6 +5,8 @@ import {
   Switch
 } from 'react-router-dom'
 
+import AuthRoute from 'client/components/Navigation/AuthRoute'
+
 import { ThemeProvider } from 'glamorous'
 import themeVariables from 'client/consts/themes'
 
@@ -19,7 +21,6 @@ import Faq from 'client/views/Faq'
 import Features from 'client/views/Features'
 import Status from 'client/views/Status'
 import Chat from 'client/views/Chat'
-
 import PageNotFound from 'client/views/PageNotFound'
 
 const App = (props) => {

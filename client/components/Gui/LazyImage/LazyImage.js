@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import InView from 'client/components/Common/InView'
+import inView from 'client/components/Common/InView'
 
 import PropTypes from 'prop-types'
 
@@ -29,14 +29,16 @@ const BgImage = glamorous.div(({ bgSize, bgPos, bgRepeat, bgImage }) => ({
   backgroundImage: `url('${bgImage}')`
 }))
 
-class LazyImage extends Component {
+@inView({ once: true })
+export default class LazyImage extends Component {
   static PropTypes = {
     src: PropTypes.string,
     useBgImage: PropTypes.bool,
     alt: PropTypes.string,
     bgPos: PropTypes.string,
     bgSize: PropTypes.string,
-    bgRepeat: PropTypes.string
+    bgRepeat: PropTypes.string,
+    isVisible: PropTypes.bool
   }
 
   static defaultProps = {
@@ -52,8 +54,7 @@ class LazyImage extends Component {
     this.state = {
       loaded: false,
       error: false,
-      isLoading: false,
-      isVisible: null
+      isLoading: false
     }
 
     this.imagePromise = null
@@ -98,19 +99,14 @@ class LazyImage extends Component {
     .catch(this.handleImageError)
   }
 
-  shouldComponentUpdate (nextProps, { loaded }) {
-    return loaded
+  shouldComponentUpdate ({ isVisible }, { loaded }) {
+    return (loaded && isVisible)
   }
 
-  componentWillReceiveProps ({ src }, { isVisible }) {
-    if (src !== this.props.src && isVisible) {
+  componentWillReceiveProps ({ src, isVisible }) {
+    if (src !== this.props.src || isVisible) {
       this.fetchImage(src)
     }
-  }
-
-  handleVisibility = (isVisible) => {
-    this.setState({ isVisible })
-    isVisible && this.fetchImage()
   }
 
   renderImage () {
@@ -126,8 +122,14 @@ class LazyImage extends Component {
     } = this.props
 
     const {
-      loaded
+      loaded,
+      error,
+      isLoading
     } = this.state
+
+    if (!loaded || error || isLoading) {
+      return null
+    }
 
     return (
       <ImageContainer>
@@ -151,12 +153,6 @@ class LazyImage extends Component {
   }
 
   render () {
-    return (
-      <InView onChange={this.handleVisibility}>
-        { this.renderImage() }
-      </InView>
-    )
+    return this.renderImage()
   }
 }
-
-export default LazyImage

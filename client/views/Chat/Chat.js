@@ -13,7 +13,7 @@ export default class Chat extends Component {
     return (
       <Wrapper className='chat'>
         {
-          [1, 2, 3, 4, 5].map((num, index) => <ContactCard key={index} />)
+          [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5].map((num, index) => <ContactCard key={index} />)
         }
       </Wrapper>
     )

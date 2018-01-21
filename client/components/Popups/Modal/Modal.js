@@ -22,7 +22,7 @@ const Frame = glamorous.div(({ theme: { modalZIndex } }) => ({
 }))
 
 const ContentWrapper = glamorous.div(({ size, theme: { SIZE_XS_MAX } }) => {
-  const desktopWidth = (size === 'sm') ? '350px' : (size === 'md') ? '480px' : '100%'
+  const desktopWidth = (size === 'sm') ? '375px' : (size === 'md') ? '480px' : '100%'
   const mobileWidth = '100%'
 
   return {
