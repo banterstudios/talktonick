@@ -10,10 +10,6 @@ const mapStateToProps = () => {
 }
 @connect(mapStateToProps, null)
 export default class Chat extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     const { messages } = this.props
 
