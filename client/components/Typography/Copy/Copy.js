@@ -11,7 +11,7 @@ const Paragraph = glamorous.p(({ theme: { fontSecondary, colorTextPrimary, fontS
   wordBreak: 'break-word'
 }))
 
-class Copy extends PureComponent {
+export default class Copy extends PureComponent {
   static propTypes = {
     children: PropTypes.any
   }
@@ -26,5 +26,3 @@ class Copy extends PureComponent {
     )
   }
 }
-
-export default Copy

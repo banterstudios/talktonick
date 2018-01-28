@@ -12,7 +12,7 @@ const NavbarWrapper = glamorous.nav(({ theme: { headerHeight }, direction }) => 
   justifyContent: (direction === 'left' ? 'flex-start' : direction === 'center' ? 'center' : 'flex-end')
 }))
 
-class Navbar extends Component {
+export default class Navbar extends Component {
   static propTypes = {
     direction: PropTypes.string
   }
@@ -27,5 +27,3 @@ class Navbar extends Component {
     )
   }
 }
-
-export default Navbar

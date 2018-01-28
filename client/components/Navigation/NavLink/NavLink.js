@@ -12,7 +12,7 @@ const NavLinkWrapper = glamorous.div(() => ({
 const disAllowedProps = ['match', 'location', 'history', 'isActive']
 
 @withRouter
-class NavLink extends Component {
+export default class NavLink extends Component {
   checkIfActive = ({ location: { pathname = '' }, href }) => {
     return (pathname && (pathname === href))
   }
@@ -34,5 +34,3 @@ class NavLink extends Component {
     )
   }
 }
-
-export default NavLink

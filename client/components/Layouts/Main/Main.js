@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Wrapper from 'client/components/Gui/Wrapper'
 import Header from 'client/components/Common/Header'
@@ -10,22 +10,24 @@ const Content = glamorous.div(({ theme: { headerHeight } }) => ({
   paddingTop: headerHeight
 }))
 
-const Main = ({ children }) => {
-  return (
-    <Wrapper>
-      <Header />
-      <Content>
-        { children }
-      </Content>
-    </Wrapper>
-  )
-}
+export default class Main extends Component {
+  static PropTypes = {
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.node
+    ])
+  }
 
-Main.PropTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.node
-  ])
-}
+  render () {
+    const { children } = this.props
 
-export default Main
+    return (
+      <Wrapper>
+        <Header />
+        <Content>
+          { children }
+        </Content>
+      </Wrapper>
+    )
+  }
+}

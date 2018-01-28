@@ -14,7 +14,7 @@ export const titleFactory = (type) => {
 
 const allowedTypes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 
-class Title extends PureComponent {
+export default class Title extends PureComponent {
   static propTypes = {
     children: PropTypes.any,
     type: PropTypes.string
@@ -34,5 +34,3 @@ class Title extends PureComponent {
     )
   }
 }
-
-export default Title

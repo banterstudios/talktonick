@@ -10,7 +10,7 @@ const NavItemWrapper = glamorous.div(({ theme: { navPrimaryBg, navHighlightBg } 
   justifyContent: 'center'
 }))
 
-class NavItem extends Component {
+export default class NavItem extends Component {
   render () {
     const { children } = this.props
 
@@ -23,5 +23,3 @@ class NavItem extends Component {
     )
   }
 }
-
-export default NavItem
