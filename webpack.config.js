@@ -92,7 +92,7 @@ module.exports = {
   },
   plugins: [
     new WriteFilePlugin({
-      test: /\.(jpe?g|png|gif|svg|json)$/
+      test: /\.(jpe?g|png|gif|svg)$/ // |json
     }),
     HTMLWebpackPluginConfig,
     HTMLWebpackHardDiskPlugin,
