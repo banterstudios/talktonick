@@ -36,7 +36,7 @@ const controller = (req, res) => {
   const templateData = {
     initialHtml: html,
     initialCSS: css,
-    initialIds: JSON.stringify(ids),
+    initialIds: serializeJS(ids),
     initialJSONState: serializeJS(store.getState(), { isJSON: true })
   }
 
