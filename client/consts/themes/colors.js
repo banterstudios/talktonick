@@ -6,5 +6,6 @@ module.exports = {
   wenge: '#5F5C55',
   gunMetal: '#272e38',
   platinum: '#e6eae9',
-  sandyTaupe: '#A4791F'
+  sandyTaupe: '#A4791F',
+  parisGreen: '#53D379'
 }

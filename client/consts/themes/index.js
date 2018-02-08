@@ -20,6 +20,10 @@ module.exports = {
   bgPrimary: COLORS.darkGunMetal,
   bgSecondary: COLORS.gunMetal,
 
+  // Status
+  inactiveStatusColor: COLORS.wenge,
+  activeStatusColor: COLORS.parisGreen,
+
   // Messages
   messagePrimaryColor: COLORS.sandyTaupe,
 

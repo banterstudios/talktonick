@@ -5,7 +5,7 @@ import ContactCard from 'client/components/Contacts/ContactCard'
 
 const mapStateToProps = () => {
   return {
-    messages: Array(100).fill({ name: 'Nick', message: 'This is a message!', timeStamp: Date.now().toString() })
+    messages: Array(100).fill({ name: 'Nick', message: 'This is a message!', timeStamp: '10:32' })
   }
 }
 @connect(mapStateToProps, null)
